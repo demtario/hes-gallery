@@ -1,0 +1,25 @@
+body{
+    box-sizing: border-box;
+    font-family: Arial;
+    margin: 0;
+    background-color: #aaa;
+}
+
+img {
+    width: 122px;
+    height: 77px;
+    margin: 3px;
+    object-fit: cover;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+img:hover
+{
+    transform: scale(1.1);
+    box-shadow: 2px 2px 6px #555;
+}
+p
+{
+    margin: 0;
+}

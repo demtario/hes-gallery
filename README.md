@@ -2,20 +2,20 @@
 
 ## Jak użyć?
 1. Podepnij następujące pliki
-'''html
+```html
     <link rel="stylesheet" href="hes-gallery.min.css">
     <script src="hes-gallery.min.js"></script>
-'''
+```
 
 2. Pojemnikowi z galerią nadaj klasę
-'''css
+```css
     .hes-gallery
-'''
+```
 
 3. Pamiętaj o podpięciu wybornej biblioteki jQuery
-'''html
+```html
     <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
-'''
+```
 
 ## Disclaimer
 ** Obecnie może istnieć jedynie jedna galeria na jednej stronie **
