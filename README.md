@@ -3,8 +3,9 @@
 ## Jak użyć?
 1. Podepnij następujące pliki
 ```html
-    <link rel="stylesheet" href="hes-gallery.min.css">
-    <script src="hes-gallery.min.js"></script>
+    <link rel="stylesheet" href="https://api.heseya.com/hesgallery/hes-gallery.min.css">
+    
+    <script src="https://api.heseya.com/hesgallery/hes-gallery.min.js"></script>
 ```
 
 2. Pojemnikowi z galerią nadaj klasę
