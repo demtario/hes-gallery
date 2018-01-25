@@ -1,21 +1,30 @@
 # HesGallery
+v1.0
 
 ## Jak użyć?
-1. Podepnij następujące pliki
+Podepnij skrypty z galerią do strony
 ```html
-    <link rel="stylesheet" href="https://api.heseya.com/hesgallery/hes-gallery.min.css">
-    
     <script src="https://api.heseya.com/hesgallery/hes-gallery.min.js"></script>
 ```
 
-2. Pojemnikowi z galerią nadaj klasę
+Pojemnikowi z zdjęciami nadaj klasę
 ```css
     .hes-gallery
 ```
 
-3. Pamiętaj o podpięciu wybornej biblioteki jQuery
+Pamiętaj o podpięciu wybornej biblioteki jQuery
 ```html
     <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
+```
+
+## Przykładowa konstrukcja galerii
+```html
+    <div class="hes-gallery">
+        <img src="image1.jpg" alt="image1" data-subtext="Podpis zdjęcia" >
+        <img src="image2.jpg" alt="image2" data-subtext="Podpis zdjęcia kolejnego" >
+        <img src="image3.jpg" alt="image3" data-subtext="Kolejny podpis zdjęcia" >
+        <img src="image4.jpg" alt="image4" data-subtext="Podpis czwartego już zdjęcia" >
+    </div>
 ```
 
 ## Disclaimer
