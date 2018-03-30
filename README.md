@@ -1,21 +1,36 @@
 # HesGallery
-v1.0
+v1.1
 
 ## Jak użyć?
 Podepnij skrypty z galerią do strony
 ```html
-    <script src="https://api.heseya.com/hesgallery/hes-gallery.min.js"></script>
+<script src="https://api.heseya.com/hesgallery/hes-gallery.min.js"></script>
 ```
 
 Pojemnikowi z zdjęciami nadaj klasę
 ```css
-    .hes-gallery
+.hes-gallery
 ```
 
 Pamiętaj o podpięciu wybornej biblioteki jQuery
 ```html
-    <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
 ```
+
+## Dostępne funkcje
+Funkcja | Opis
+---|---
+*HesGallery.init()* | Pozwala na przeładowanie galerii zdjęć, jeśli np. w międzyczasie dynamicznie zmieniła się zawartość pojemnika galerii to dzięki tej funckji można na nowo załadować zdjęcia do skryptu
+*HesGallery.show(**n**)* | Wyświetla **n-te** zdjęcie z galerii
+*HesGallery.next()* | Wyświetla następne zdjęcie względem obecnego
+*HesGallery.prev()* | Wyświetla poprzednie zdjęcie względem obecnego
+*HesGallery.hide()* | Ukrywa galerię
+
+## Parametry <img>
+Parametr | Opis
+---|---
+*data-subtext="**x**"* | Tworzy podpis pod zdjęciem w galerii o treści **x**
+
 
 ## Przykładowa konstrukcja galerii
 ```html
@@ -28,6 +43,6 @@ Pamiętaj o podpięciu wybornej biblioteki jQuery
 ```
 
 ## Disclaimer
-** Obecnie może istnieć jedynie jedna galeria na jednej stronie **
+**Obecnie może istnieć jedynie jedna galeria na jednej stronie**
 
-Copyright 2018 Artur Mędrygał Heseya
+*Copyright &copy; 2018 Artur Mędrygał - Heseya*
