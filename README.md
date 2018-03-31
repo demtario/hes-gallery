@@ -18,7 +18,7 @@ Pamiętaj o podpięciu wybornej biblioteki jQuery
 ```
 
 ## Opcje HesGallery
-Jeśli chcesz możesz zmodyfikować opcje galerii aby jej działanie bardziej Ci odpowiadało za pomocą funckji *HesGallery.setOptions()*
+Jeśli chcesz, to możesz zmodyfikować opcje galerii aby jej działanie bardziej Ci odpowiadało za pomocą funckji *HesGallery.setOptions()*  
 Przykładowe zastosowanie:
 ```javascript
 HesGallery.setOptions({
