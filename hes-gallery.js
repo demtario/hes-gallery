@@ -1,6 +1,6 @@
 /*!
 
-    HesGallery ver 1.2.0 (31.03.2018r.)
+    HesGallery ver 1.2.1 (31.03.2018r.)
 
     Copyright (c) 2018 Artur Medrygal (amedrygal@heseya.com)
 
@@ -12,7 +12,6 @@
 var HesGallery = {
     executed: false,
     current: 0,
-    open: false,
     options: {
         wrapAround: false,
         disableScrolling: false,
@@ -50,14 +49,17 @@ HesGallery.init = function() {
     
     this.imgPaths = []; // ścieżki do plików
     this.subTexts = []; //podpis pod zdjęciem
+    this.altTexts = [];
     
     for(var i = 1; i<= this.ile; i++) {
         this.imgPaths[i] = $('.hes-gallery img:nth-of-type('+i+')').attr('src');
-        this.subTexts[i] = $('.hes-gallery img:nth-of-type('+i+')').attr('data-subtext');
+        this.subTexts[i] = $('.hes-gallery img:nth-of-type('+i+')').attr('data-subtext') || '';
+        this.altTexts[i] = $('.hes-gallery img:nth-of-type('+i+')').attr('data-alt') || '';
 
         $('.hes-gallery img:nth-of-type('+i+')').attr('onclick','HesGallery.show('+i+')');
     }
     
+    return 'HesGallery initiated!';
 }
 
 HesGallery.show = function(i) {
@@ -65,11 +67,13 @@ HesGallery.show = function(i) {
 
     this.open = true;
 
-    this.$img.attr('src',this.imgPaths[i]);
+    this.$img.attr('src',this.imgPaths[i]); // ustawia ścieżke do zdjęcia
+    this.$img.attr('alt', this.altTexts[i]); // ustawia atrybut alt
     this.$galery.addClass('open');
 
     $('#hg-pic-cont').attr('data-subtext', this.subTexts[i]);
     if(this.options.showImageCount) $('#hg-pic-cont').attr('data-howmany', this.current+'/'+this.ile);
+    else $('#hg-pic-cont').attr('data-howmany', '');
 
     if(this.current == 1 && !this.options.wrapAround) {
         $('#hg-prev').addClass('hg-unvisible');
@@ -101,27 +105,17 @@ HesGallery.hide = function() {
 }
 
 HesGallery.next = function() {
-    if(this.options.wrapAround && this.current == this.ile) {
-
+    if(this.options.wrapAround && this.current == this.ile)
         this.show(1);
-
-    } else {
-
-        if(this.current < this.ile) this.show(this.current+1);
-
-    }
+    else if(this.current < this.ile)
+        this.show(this.current+1);
 }
 
 HesGallery.prev = function() {
-    if(this.options.wrapAround && this.current == 1) {
-
+    if(this.options.wrapAround && this.current == 1)
         this.show(this.ile);
-
-    } else {
-
-        if(this.current > 1) this.show(this.current-1);
-
-    }
+    else if(this.current > 1)
+        this.show(this.current-1);
 }
 
 addEventListener('keydown', function(e){
