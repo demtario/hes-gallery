@@ -7,10 +7,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1.0">
     <link rel="stylesheet" href="src/style.css">
-    <link rel="stylesheet" href="hes-gallery.css">
 </head>
 
 <body>
+
+    <link rel="stylesheet" href="hes-gallery.css">
    
 <!--    <div id="focie" class="hes-gallery"></div>-->
 
@@ -24,5 +25,14 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
 <!--    <script src="src/scripts.js"></script>-->
     <script src="hes-gallery.js"></script>
+    <script>
+
+        HesGallery.setOptions({
+            wrapAround: true,
+            disableScrolling: true,
+            showImageCount: true
+        });
+
+    </script>
 </body>
 </html>

@@ -1,6 +1,6 @@
 /*!
 
-    HesGallery ver 1.1.1 (23.02.2018r.)
+    HesGallery ver 1.2.0 (31.03.2018r.)
 
     Copyright (c) 2018 Artur Medrygal (amedrygal@heseya.com)
 
@@ -26,6 +26,10 @@
     opacity: 0;
     transition: 0.3s;
     z-index: 99999;
+}
+
+.hg-disable-scrolling{
+    overflow: hidden !important;
 }
 
 #hg-bg
@@ -112,7 +116,7 @@
     border: 0;
     outline: 0;
     opacity: 0.7;
-    transition: opacity 0.3s;
+    transition: 0.3s;
 }
 
 #hgallery button:hover

@@ -1,5 +1,5 @@
 # HesGallery
-v1.1
+v1.2
 
 ## Jak użyć?
 Podepnij skrypty z galerią do strony
@@ -17,7 +17,25 @@ Pamiętaj o podpięciu wybornej biblioteki jQuery
 <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
 ```
 
+## Opcje HesGallery
+Jeśli chcesz możesz zmodyfikować opcje galerii aby jej działanie bardziej Ci odpowiadało za pomocą funckji *HesGallery.setOptions()*
+Przykładowe zastosowanie:
+```javascript
+HesGallery.setOptions({
+    wrapAround: true,
+    disableScrolling: true
+});
+```
+
+Parametr|Wartość domyślna|Opis
+---|---|---
+wrapAround | false | Zapętla galerię, czyli będąc na ostatnim zdjęciu galerii i przechodząc do następnego trafimy do pierwszego i analogicznie w drugą stronę
+disableScrolling | false | Możliwość przewijania strony w momencie gdy uruchomiona jest galeria
+showImageCount | true | Wyświetlanie numeru akrualnego zdjęcia i liczby wszystkich zdjęć (np. "1/5")
+
 ## Dostępne funkcje
+Kilka funkcji sterujących galeriią które możesz umieścić w wybranym przez siebie miejscu
+
 Funkcja | Opis
 ---|---
 *HesGallery.init()* | Pozwala na przeładowanie galerii zdjęć, jeśli np. w międzyczasie dynamicznie zmieniła się zawartość pojemnika galerii to dzięki tej funckji można na nowo załadować zdjęcia do skryptu
@@ -25,6 +43,7 @@ Funkcja | Opis
 *HesGallery.next()* | Wyświetla następne zdjęcie względem obecnego
 *HesGallery.prev()* | Wyświetla poprzednie zdjęcie względem obecnego
 *HesGallery.hide()* | Ukrywa galerię
+*HesGallery.setOptions()* | Pozwala na modyfikację opcji galerii (więcej wyżej)
 
 ## Parametry <img>
 Parametr | Opis
@@ -45,4 +64,4 @@ Parametr | Opis
 ## Disclaimer
 **Obecnie może istnieć jedynie jedna galeria na jednej stronie**
 
-*Copyright &copy; 2018 Artur Mędrygał - Heseya*
+*Copyright 2018 Artur Mędrygał - Heseya*

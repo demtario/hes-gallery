@@ -1,6 +1,6 @@
 /*!
 
-    HesGallery ver 1.1.1 (23.02.2018r.)
+    HesGallery ver 1.2.0 (31.03.2018r.)
 
     Copyright (c) 2018 Artur Medrygal (amedrygal@heseya.com)
 
@@ -12,7 +12,17 @@
 var HesGallery = {
     executed: false,
     current: 0,
+    open: false,
+    options: {
+        wrapAround: false,
+        disableScrolling: false,
+        showImageCount: true
+    }
 };
+
+HesGallery.setOptions = function(values) {
+    for(var key in values) this.options[key] = values[key];
+}
 
 HesGallery.init = function() {
     if(!this.executed) {
@@ -31,6 +41,8 @@ HesGallery.init = function() {
         this.executed = true;
     }
     
+    this.count = $('.hes-gallery').length; // ilość galerii (roboczo)
+
     this.$img = $('#hg-pic'); // <img>
     this.$galery = $('#hgallery'); // Cała galeria
     
@@ -51,48 +63,70 @@ HesGallery.init = function() {
 HesGallery.show = function(i) {
     this.current = i;
 
+    this.open = true;
+
     this.$img.attr('src',this.imgPaths[i]);
     this.$galery.addClass('open');
 
     $('#hg-pic-cont').attr('data-subtext', this.subTexts[i]);
-    $('#hg-pic-cont').attr('data-howmany', this.current+'/'+this.ile);
+    if(this.options.showImageCount) $('#hg-pic-cont').attr('data-howmany', this.current+'/'+this.ile);
 
-    if(this.current == 1) {
+    if(this.current == 1 && !this.options.wrapAround) {
         $('#hg-prev').addClass('hg-unvisible');
         $('#hg-prev-onpic').addClass('hg-unvisible');
 
         $('#hg-next').removeClass('hg-unvisible');
         $('#hg-next-onpic').removeClass('hg-unvisible');
-    } else if (this.current == this.ile) {
+    } else if (this.current == this.ile && !this.options.wrapAround) {
         $('#hg-next').addClass('hg-unvisible');
         $('#hg-next-onpic').addClass('hg-unvisible');
 
         $('#hg-prev').removeClass('hg-unvisible');
         $('#hg-prev-onpic').removeClass('hg-unvisible');
-    } else {
+    } else if(!this.options.wrapAround) {
         $('#hg-next').removeClass('hg-unvisible');
         $('#hg-next-onpic').removeClass('hg-unvisible');
 
         $('#hg-prev').removeClass('hg-unvisible');
         $('#hg-prev-onpic').removeClass('hg-unvisible');
     }
+
+    if(this.options.disableScrolling) $('body').addClass('hg-disable-scrolling'); // Wyłącza scrollowanie
 }
 
 HesGallery.hide = function() {
     this.$galery.removeClass('open');
+    this.open = false;
+    if(this.options.disableScrolling) $('body').removeClass('hg-disable-scrolling'); // Włącza scrollowanie
 }
 
 HesGallery.next = function() {
-    if(this.current < this.ile) this.show(this.current+1);
+    if(this.options.wrapAround && this.current == this.ile) {
+
+        this.show(1);
+
+    } else {
+
+        if(this.current < this.ile) this.show(this.current+1);
+
+    }
 }
 
 HesGallery.prev = function() {
-    if(this.current > 1) this.show(this.current-1);
+    if(this.options.wrapAround && this.current == 1) {
+
+        this.show(this.ile);
+
+    } else {
+
+        if(this.current > 1) this.show(this.current-1);
+
+    }
 }
 
 addEventListener('keydown', function(e){
-    if(e.keyCode == 39) HesGallery.next();
-    if(e.keyCode == 37) HesGallery.prev();
+    if(e.keyCode == 39 && HesGallery.open) HesGallery.next();
+    if(e.keyCode == 37 && HesGallery.open) HesGallery.prev();
     if(e.keyCode == 27) HesGallery.hide();
 });
 
