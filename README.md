@@ -1,25 +1,25 @@
-# HesGallery
+[logo]: https://api.heseya.com/hesgallery/logo.png "HesGallery"
 v1.2.2
 
 ## Jak użyć?
-1. Podepnij skrypty z galerią do strony  
+Podepnij skrypty z galerią do strony  
 Możesz skorzystać z hostowanego skryptu podpinając niniejszy skrypt lub zaimportować go lokalnie pobierając paczkę z plikami, pamiętaj wtedy również o podpięciu arkusza styli CSS
 ```html
 <script src="https://api.heseya.com/hesgallery/hes-gallery.min.js"></script>
 ```
 
-2. Pamiętaj o podpięciu wybornej biblioteki jQuery
+Pamiętaj o podpięciu wybornej biblioteki jQuery
 ```html
 <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
 ```
 
-3. Pojemnikowi z zdjęciami nadaj klasę
+Pojemnikowi z zdjęciami nadaj klasę
 **Obecnie może istnieć tylko jedna galeria!**
 ```css
 .hes-gallery
 ```
 
-4. Ewentualnie modyfikuj działanie skryptu przez **Opcje skryptu** (Akapit niżej)
+Ewentualnie modyfikuj działanie skryptu przez **Opcje skryptu** (Akapit niżej)
 
 ## Przykładowa konstrukcja galerii
 ```html

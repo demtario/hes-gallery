@@ -2,23 +2,57 @@ body{
     box-sizing: border-box;
     font-family: Arial;
     margin: 0;
-    background-color: #aaa;
+    background-color: #ddd;
+    height: 100vh;
 }
 
-img {
-    width: 122px;
-    height: 77px;
-    margin: 3px;
+header{
+    background-color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+header img{
+    height: 200px;
+}
+
+main{
+    width: 800px;
+    padding: 5px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    background-color: #eee;
+    height: calc(100vh - 240px);
+}
+
+.hes-gallery{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 10px;
+    padding: 10px;
+}
+
+.hes-gallery img {
+    width: 100%;
     object-fit: cover;
     transition: 0.3s;
     cursor: pointer;
 }
 
-img:hover
+.hes-gallery img:hover
 {
-    transform: scale(1.1);
+    transform: scale(1.04);
     box-shadow: 2px 2px 6px #555;
 }
+
+h2{
+    margin-top: 30px;
+    margin-bottom: 5px;
+    font-variant: small-caps;
+    text-align: center;
+    color: #481212;
+}
+
 p
 {
     margin: 0;
