@@ -1,21 +1,25 @@
 # HesGallery
-v1.2.1
+v1.2.2
 
 ## Jak użyć?
-Podepnij skrypty z galerią do strony
+1. Podepnij skrypty z galerią do strony  
+Możesz skorzystać z hostowanego skryptu podpinając niniejszy skrypt lub zaimportować go lokalnie pobierając paczkę z plikami, pamiętaj wtedy również o podpięciu arkusza styli CSS
 ```html
 <script src="https://api.heseya.com/hesgallery/hes-gallery.min.js"></script>
 ```
 
-Pojemnikowi z zdjęciami nadaj klasę
+2. Pamiętaj o podpięciu wybornej biblioteki jQuery
+```html
+<script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
+```
+
+3. Pojemnikowi z zdjęciami nadaj klasę
+**Obecnie może istnieć tylko jedna galeria!**
 ```css
 .hes-gallery
 ```
 
-Pamiętaj o podpięciu wybornej biblioteki jQuery
-```html
-<script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
-```
+4. Ewentualnie modyfikuj działanie skryptu przez **Opcje skryptu** (Akapit niżej)
 
 ## Przykładowa konstrukcja galerii
 ```html
@@ -42,6 +46,7 @@ Parametr|Wartość domyślna|Opis
 *wrapAround* | false | Zapętla galerię, czyli będąc na ostatnim zdjęciu galerii i przechodząc do następnego trafimy do pierwszego i analogicznie w drugą stronę
 *disableScrolling* | false | Możliwość przewijania strony w momencie gdy uruchomiona jest galeria
 *showImageCount* | true | Wyświetlanie numeru aktualnego zdjęcia i liczby wszystkich zdjęć (np. "1/5")
+*hostedStyles* | true | Automatycznie podpina arkusz styli ze źródłem na api.heseya.com (wyłącz jeśli chcesz umieścić hes-gallery na własnym serwerze)
 
 ## Dostępne funkcje
 Kilka funkcji sterujących galeriią które możesz umieścić w wybranym przez siebie miejscu

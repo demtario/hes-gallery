@@ -1,6 +1,6 @@
 /*!
 
-    HesGallery ver 1.2.1 (31.03.2018r.)
+    HesGallery ver 1.2.2 (01.04.2018r.)
 
     Copyright (c) 2018 Artur Medrygal (amedrygal@heseya.com)
 
@@ -15,9 +15,10 @@ var HesGallery = {
     options: {
         wrapAround: false,
         disableScrolling: false,
-        showImageCount: true
+        showImageCount: true,
+        hostedStyles: true
     }
-};
+}
 
 HesGallery.setOptions = function(values) {
     for(var key in values) this.options[key] = values[key];
@@ -25,7 +26,7 @@ HesGallery.setOptions = function(values) {
 
 HesGallery.init = function() {
     if(!this.executed) {
-        $("<link rel='stylesheet' href='https://api.heseya.com/hesgallery/hes-gallery.min.css'>").appendTo('head');
+        if(this.options.hostedStyles) $("<link rel='stylesheet' href='https://api.heseya.com/hesgallery/hes-gallery.min.css'>").appendTo('head');
 
         $("<div id='hgallery' style='visibility:hidden;'></div>").appendTo('body');
         $("<div id='hg-bg' onclick='HesGallery.hide()'></div>").appendTo('#hgallery');
