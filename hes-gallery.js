@@ -107,7 +107,7 @@ HesGallery.show = function(g,i) {
 
         this.b_next.classList = '';
         this.b_next_onpic.classList = '';
-    } else if (this.currentImg == this.count && !this.options.wrapAround) {
+    } else if (this.currentImg == this.galleries[this.currentGal].count && !this.options.wrapAround) {
         this.b_next.classList = 'hg-unvisible';
         this.b_next_onpic.classList = 'hg-unvisible';
 
@@ -132,16 +132,16 @@ HesGallery.hide = function() {
 
 HesGallery.next = function() {
     if(this.options.wrapAround && this.currentImg == this.galleries[this.currentGal].count)
-        this.show(1);
+        this.show(this.currentGal, 1);
     else if(this.currentImg < this.galleries[this.currentGal].count)
-        this.show(this.currentImg+1);
+        this.show(this.currentGal, this.currentImg+1);
 }
 
 HesGallery.prev = function() {
     if(this.options.wrapAround && this.currentImg == 1)
-        this.show(this.galleries[this.currentGal].count);
+        this.show(this.currentGal, this.galleries[this.currentGal].count);
     else if(this.currentImg > 1)
-        this.show(this.currentImg-1);
+        this.show(this.currentGal, this.currentImg-1);
 }
 
 addEventListener('keydown', function(e){
