@@ -1,16 +1,11 @@
-![logo] (https://api.heseya.com/hesgallery/logo.png)
-v1.2.2
+![logo] (https://api.heseya.com/hesgallery/logo.png)  
+v1.3.0 (jQuery Deletion Update)
 
 ## Jak użyć?
 Podepnij skrypty z galerią do strony  
-Możesz skorzystać z hostowanego skryptu podpinając niniejszy skrypt lub zaimportować go lokalnie pobierając paczkę z plikami, pamiętaj wtedy również o podpięciu arkusza styli CSS
+Możesz skorzystać z hostowanego skryptu podpinając niniejszy skrypt lub zaimportować go lokalnie pobierając paczkę z plikami, pamiętaj wtedy również o podpięciu arkusza styli CSS i wyłączenia automatycznego podpinania styli w opcjach
 ```html
 <script src="https://api.heseya.com/hesgallery/hes-gallery.min.js"></script>
-```
-
-Pamiętaj o podpięciu wybornej biblioteki jQuery
-```html
-<script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
 ```
 
 Pojemnikowi z zdjęciami nadaj klasę
