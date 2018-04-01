@@ -8,7 +8,7 @@ Możesz skorzystać z hostowanego skryptu podpinając niniejszy skrypt lub zaimp
 <script src="https://api.heseya.com/hesgallery/hes-gallery.min.js"></script>
 ```
 
-Pojemnikowi z zdjęciami nadaj klasę
+Pojemnikowi z zdjęciami nadaj klasę  
 **Obecnie może istnieć tylko jedna galeria!**
 ```css
 .hes-gallery
@@ -26,7 +26,7 @@ Ewentualnie modyfikuj działanie skryptu przez **Opcje skryptu** (Akapit niżej)
 </div>
 ```
 
-## Opcje skryptu
+## Globalne opcje galerii
 Jeśli chcesz, to możesz zmodyfikować opcje galerii aby jej działanie bardziej Ci odpowiadało za pomocą funckji *HesGallery.setOptions()*  
 Przykładowe zastosowanie:
 ```javascript
@@ -61,7 +61,6 @@ Parametr | Opis
 *data-subtext* | Tworzy podpis pod zdjęciem w galerii
 *data-alt* | Ustawia atrybut alt obrazka wyświetlanego w galerii
 
-## Disclaimer
-**Obecnie może istnieć jedynie jedna galeria na jednej stronie**
 
-*Copyright 2018 Artur Mędrygał - Heseya*
+*Licencja: [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/)*
+*Copyright 2018 [Artur Mędrygał](mailto:amedrygal@heseya.com) - [Heseya](https://heseya.com)*
