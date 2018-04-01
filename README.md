@@ -3,7 +3,7 @@ v1.3.0 (jQuery Deletion Update)
 
 ## Jak użyć?
 Podepnij skrypty z galerią do strony  
-Możesz skorzystać z hostowanego skryptu podpinając niniejszy skrypt lub zaimportować go lokalnie pobierając paczkę z plikami, pamiętaj wtedy również o podpięciu arkusza styli CSS i wyłączenia automatycznego podpinania styli w opcjach
+Możesz skorzystać z hostowanego skryptu podpinając niniejszy skrypt lub zaimportować go lokalnie pobierając paczkę z plikami, pamiętaj wtedy również o podpięciu arkusza styli CSS i wyłączeniu automatycznego podpinania styli w opcjach
 ```html
 <script src="https://api.heseya.com/hesgallery/hes-gallery.min.js"></script>
 ```
@@ -62,5 +62,5 @@ Parametr | Opis
 *data-alt* | Ustawia atrybut alt obrazka wyświetlanego w galerii
 
 
-*Licencja: [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/)*
+*Licencja: [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/)*  
 *Copyright 2018 [Artur Mędrygał](mailto:amedrygal@heseya.com) - [Heseya](https://heseya.com)*
