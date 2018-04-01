@@ -1,4 +1,4 @@
-[logo]: https://api.heseya.com/hesgallery/logo.png "HesGallery"
+![logo] (https://api.heseya.com/hesgallery/logo.png)
 v1.2.2
 
 ## Jak użyć?
