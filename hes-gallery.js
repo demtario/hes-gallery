@@ -11,7 +11,8 @@
 
 var HesGallery = {
     executed: false,
-    current: 0,
+    currentImg: 0,
+    currentGal: 1,
     options: {
         wrapAround: false,
         disableScrolling: false,
@@ -51,50 +52,62 @@ HesGallery.init = function() {
         this.executed = true;
     }
     
-    this.ileGalerii = document.querySelectorAll('.hes-gallery').length; // ilość galerii (roboczo)
+    this.count = document.querySelectorAll('.hes-gallery').length; // ilość galerii (roboczo)
     
-    this.img = document.getElementById('hg-pic'); // <img>
-
-    this.count = document.querySelectorAll('.hes-gallery img').length; // ilość elementów galerii
+    this.galleries = []; // Ilość galerii
     
-    this.imgPaths = []; // ścieżki do plików
-    this.subTexts = []; //podpis pod zdjęciem
-    this.altTexts = [];
-    
-    for(var i = 1; i<= this.count; i++) {
-        this.imgPaths[i] = document.querySelector('.hes-gallery img:nth-of-type('+i+')').src;
-        this.subTexts[i] = document.querySelector('.hes-gallery img:nth-of-type('+i+')').dataset.subtext || '';
-        this.altTexts[i] = document.querySelector('.hes-gallery img:nth-of-type('+i+')').dataset.alt || '';
-
-        document.querySelector('.hes-gallery img:nth-of-type('+i+')').setAttribute('onclick', 'HesGallery.show('+i+')');
+    for(var i = 1; i<=this.count; i++) {
+        this.galleries[i] = new HesSingleGallery(i);
     }
     
     return 'HesGallery initiated!';
 }
 
-HesGallery.show = function(i) {
-    this.current = i;
+class HesSingleGallery {
+    constructor(i) {
+        this.index = i;
+        this.imgPaths = []; // ścieżki do plików
+        this.subTexts = []; //podpis pod zdjęciem
+        this.altTexts = [];
+
+        this.count = document.querySelectorAll('.hes-gallery:nth-of-type('+this.index+') img').length;
+
+        for(var i = 1; i<= this.count; i++) { //TU JEST BROKEN
+            this.imgPaths[i] = document.querySelector('.hes-gallery:nth-of-type('+this.index+') img:nth-of-type('+i+')').src;
+            this.subTexts[i] = document.querySelector('.hes-gallery:nth-of-type('+this.index+') img:nth-of-type('+i+')').dataset.subtext || '';
+            this.altTexts[i] = document.querySelector('.hes-gallery:nth-of-type('+this.index+') img:nth-of-type('+i+')').dataset.alt || '';
+
+            document.querySelector('.hes-gallery:nth-of-type('+this.index+') img:nth-of-type('+i+')').setAttribute('onclick', 'HesGallery.show('+this.index+','+i+')');
+        }
+    }
+}
+
+HesGallery.show = function(g,i) {
+    this.currentImg = i;
+    this.currentGal = g;
 
     this.open = true;
 
-    this.img.src = this.imgPaths[i]; // ustawia ścieżke do zdjęcia
-    this.img.alt = this.altTexts[i]; // ustawia atrybut alt
+    document.getElementById('hg-pic').setAttribute('src', this.galleries[g].imgPaths[i]); // ustawia ścieżke do zdjęcia
+    document.getElementById('hg-pic').alt = this.galleries[g].altTexts[i]; // ustawia atrybut alt
+
+    console.log( HesGallery.img );
 
     this.galery.classList = 'open';
 
-    this.pic_cont.dataset.subtext = this.subTexts[i];
+    this.pic_cont.dataset.subtext = this.galleries[g].subTexts[i];
 
-    if(this.options.showImageCount) this.pic_cont.dataset.howmany =  this.current+'/'+this.count;
+    if(this.options.showImageCount) this.pic_cont.dataset.howmany =  this.currentImg+'/'+this.galleries[g].count;
     else  this.pic_cont.dataset.howmany = '';
 
     // Zarządzanie widocznością przycisków przewijania
-    if(this.current == 1 && !this.options.wrapAround) {
+    if(this.currentImg == 1 && !this.options.wrapAround) {
         this.b_prev.classList = 'hg-unvisible';
         this.b_prev_onpic.classList = 'hg-unvisible';
 
         this.b_next.classList = '';
         this.b_next_onpic.classList = '';
-    } else if (this.current == this.count && !this.options.wrapAround) {
+    } else if (this.currentImg == this.count && !this.options.wrapAround) {
         this.b_next.classList = 'hg-unvisible';
         this.b_next_onpic.classList = 'hg-unvisible';
 
@@ -118,17 +131,17 @@ HesGallery.hide = function() {
 }
 
 HesGallery.next = function() {
-    if(this.options.wrapAround && this.current == this.count)
+    if(this.options.wrapAround && this.currentImg == this.galleries[this.currentGal].count)
         this.show(1);
-    else if(this.current < this.count)
-        this.show(this.current+1);
+    else if(this.currentImg < this.galleries[this.currentGal].count)
+        this.show(this.currentImg+1);
 }
 
 HesGallery.prev = function() {
-    if(this.options.wrapAround && this.current == 1)
-        this.show(this.count);
-    else if(this.current > 1)
-        this.show(this.current-1);
+    if(this.options.wrapAround && this.currentImg == 1)
+        this.show(this.galleries[this.currentGal].count);
+    else if(this.currentImg > 1)
+        this.show(this.currentImg-1);
 }
 
 addEventListener('keydown', function(e){
