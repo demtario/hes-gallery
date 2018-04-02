@@ -41,6 +41,7 @@ Parametr|Wartość domyślna|Opis
 *disableScrolling* | false | Możliwość przewijania strony w momencie gdy uruchomiona jest galeria
 *showImageCount* | true | Wyświetlanie numeru aktualnego zdjęcia i liczby wszystkich zdjęć (np. "1/5")
 *hostedStyles* | true | Automatycznie podpina arkusz styli ze źródłem na api.heseya.com (wyłącz jeśli chcesz umieścić hes-gallery na własnym serwerze)
+*animations* | true | Animacje w trakcie korzystania z galerii
 
 ## Dostępne funkcje
 Kilka funkcji sterujących galeriią które możesz umieścić w wybranym przez siebie miejscu

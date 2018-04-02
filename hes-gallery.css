@@ -1,6 +1,6 @@
 /*!
 
-    HesGallery ver 1.3.2 (02.04.2018r.)
+    HesGallery ver 1.3.3 (02.04.2018r.)
 
     Copyright (c) 2018 Artur Medrygal (amedrygal@heseya.com)
 
@@ -67,6 +67,12 @@
     background-color: white;
     -webkit-box-shadow: 2px 2px 4px #333;
             box-shadow: 2px 2px 4px #333;
+    transition: transform 0.3s;
+    transform: scale(1);
+}
+
+#hg-pic-cont.hg-transition{
+    transform: scale(0.1);
 }
 
 #hg-pic-cont::before
