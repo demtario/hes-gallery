@@ -18,10 +18,10 @@ Ewentualnie modyfikuj działanie skryptu przez **Opcje skryptu** (Akapit niżej)
 ## Przykładowa konstrukcja galerii
 ```html
 <div class="hes-gallery">
-    <img src="image1.jpg" alt="image1" data-subtext="Podpis zdjęcia" data-alt="tekst alternatywny" >
-    <img src="image2.jpg" alt="image2" data-subtext="Podpis zdjęcia kolejnego" >
-    <img src="image3.jpg" alt="image3" data-subtext="Kolejny podpis zdjęcia" >
-    <img src="image4.jpg" alt="image4" data-subtext="Podpis czwartego już zdjęcia" >
+    <img src="image1.jpg" alt="image1" data-subtext="Podpis zdjęcia" data-alt="tekst alternatywny" />
+    <img src="image2.jpg" alt="image2" data-subtext="Podpis zdjęcia kolejnego" />
+    <img src="image3.jpg" alt="image3" data-subtext="Kolejny podpis zdjęcia" />
+    <img src="image4.jpg" alt="image4" data-subtext="Podpis czwartego już zdjęcia" />
 </div>
 ```
 

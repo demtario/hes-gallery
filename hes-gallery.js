@@ -26,12 +26,12 @@ function HesSingleGallery(index) {
 
     this.count = document.querySelectorAll('.hes-gallery:nth-of-type('+this.index+') img').length; // liczba zdjęć w galerii
 
-    for(var i = 1; i<= this.count; i++) {
-        this.imgPaths[i] = document.querySelector('.hes-gallery:nth-of-type('+this.index+') img:nth-of-type('+i+')').src || '';
-        this.subTexts[i] = document.querySelector('.hes-gallery:nth-of-type('+this.index+') img:nth-of-type('+i+')').dataset.subtext || '';
-        this.altTexts[i] = document.querySelector('.hes-gallery:nth-of-type('+this.index+') img:nth-of-type('+i+')').dataset.alt || '';
+    for(var i = 0; i< this.count; i++) {
+        this.imgPaths[i] = document.querySelector('.hes-gallery:nth-of-type('+this.index+') img:nth-of-type('+(i+1)+')').src || '';
+        this.subTexts[i] = document.querySelector('.hes-gallery:nth-of-type('+this.index+') img:nth-of-type('+(i+1)+')').dataset.subtext || '';
+        this.altTexts[i] = document.querySelector('.hes-gallery:nth-of-type('+this.index+') img:nth-of-type('+(i+1)+')').dataset.alt || '';
 
-        document.querySelector('.hes-gallery:nth-of-type('+this.index+') img:nth-of-type('+i+')').setAttribute('onclick', 'HesGallery.show('+this.index+','+i+')');
+        document.querySelector('.hes-gallery:nth-of-type('+this.index+') img:nth-of-type('+(i+1)+')').setAttribute('onclick', 'HesGallery.show('+(this.index-1)+','+i+')');
     }
 }
 
@@ -41,27 +41,29 @@ HesGallery.setOptions = function(values) {
 
 HesGallery.init = function() {
     if(!this.executed) { // Tworzenie elementow gallerii
+        this.EOM = {};
+
         if(this.options.hostedStyles) document.head.innerHTML += "<link rel='stylesheet' href='https://api.heseya.com/hesgallery/hes-gallery.min.css'>";
 
         document.body.innerHTML += "<div id='hgallery' style='visibility:hidden;'></div>";
-        this.galery = document.getElementById('hgallery'); // Cała galeria
+        this.EOM.galery = document.getElementById('hgallery'); // Cała galeria
 
-        this.galery.innerHTML += "<div id='hg-bg' onclick='HesGallery.hide()'></div>";
-        this.galery.innerHTML += "<div id='hg-pic-cont'><img id='hg-pic' /></div>";
+        this.EOM.galery.innerHTML += "<div id='hg-bg' onclick='HesGallery.hide()'></div>";
+        this.EOM.galery.innerHTML += "<div id='hg-pic-cont'><img id='hg-pic' /></div>";
 
-        this.galery.innerHTML += "<button id='hg-prev' onclick='HesGallery.prev()'></button>";
-        this.galery.innerHTML += "<button id='hg-next' onclick='HesGallery.next()'></button>";
+        this.EOM.galery.innerHTML += "<button id='hg-prev' onclick='HesGallery.prev()'></button>";
+        this.EOM.galery.innerHTML += "<button id='hg-next' onclick='HesGallery.next()'></button>";
 
-        this.b_prev = document.getElementById('hg-prev');
-        this.b_next = document.getElementById('hg-next');
+        this.EOM.b_prev = document.getElementById('hg-prev');
+        this.EOM.b_next = document.getElementById('hg-next');
 
-        this.pic_cont = document.getElementById('hg-pic-cont');
+        this.EOM.pic_cont = document.getElementById('hg-pic-cont');
 
-        this.pic_cont.innerHTML += "<div id='hg-prev-onpic' onclick='HesGallery.prev()'></div>";
-        this.pic_cont.innerHTML += "<div id='hg-next-onpic' onclick='HesGallery.next()'></div>";
+        this.EOM.pic_cont.innerHTML += "<div id='hg-prev-onpic' onclick='HesGallery.prev()'></div>";
+        this.EOM.pic_cont.innerHTML += "<div id='hg-next-onpic' onclick='HesGallery.next()'></div>";
 
-        this.b_next_onpic = document.getElementById('hg-next-onpic');
-        this.b_prev_onpic = document.getElementById('hg-prev-onpic');
+        this.EOM.b_next_onpic = document.getElementById('hg-next-onpic');
+        this.EOM.b_prev_onpic = document.getElementById('hg-prev-onpic');
 
         this.executed = true;
     }
@@ -70,8 +72,8 @@ HesGallery.init = function() {
     
     this.galleries = [];
     
-    for(var i = 1; i<=this.count; i++) { // tworzenie galerii
-        this.galleries[i] = new HesSingleGallery(i);
+    for(var i = 0; i<this.count; i++) { // tworzenie galerii
+        this.galleries[i] = new HesSingleGallery(i+1);
     }
     
     return 'HesGallery initiated!';
@@ -87,39 +89,43 @@ HesGallery.show = function(g,i) {
 
     document.getElementById('hg-pic').alt = this.galleries[g].altTexts[i]; // ustawia atrybut alt
 
-    this.galery.classList = 'open';
+    this.EOM.galery.classList = 'open';
 
-    this.pic_cont.dataset.subtext = this.galleries[g].subTexts[i];
+    this.EOM.pic_cont.dataset.subtext = this.galleries[g].subTexts[i];
 
-    if(this.options.showImageCount) this.pic_cont.dataset.howmany =  this.currentImg+'/'+this.galleries[g].count;
-    else  this.pic_cont.dataset.howmany = '';
+    if(this.options.showImageCount) this.EOM.pic_cont.dataset.howmany =  (this.currentImg+1)+'/'+this.galleries[g].count;
+    else  this.EOM.pic_cont.dataset.howmany = '';
 
     // Zarządzanie widocznością przycisków przewijania
-    if(this.currentImg == 1 && !this.options.wrapAround) {
-        this.b_prev.classList = 'hg-unvisible';
-        this.b_prev_onpic.classList = 'hg-unvisible';
+    if(this.currentImg+1 == 1 && !this.options.wrapAround) { //Pierwsze zdjęcie
+        this.EOM.b_prev.classList = 'hg-unvisible';
+        this.EOM.b_prev_onpic.classList = 'hg-unvisible';
 
-        this.b_next.classList = '';
-        this.b_next_onpic.classList = '';
-    } else if (this.currentImg == this.galleries[this.currentGal].count && !this.options.wrapAround) {
-        this.b_next.classList = 'hg-unvisible';
-        this.b_next_onpic.classList = 'hg-unvisible';
+        this.EOM.b_next.classList = '';
+        this.EOM.b_next_onpic.classList = '';
 
-        this.b_prev.classList = '';
-        this.b_prev_onpic.classList = '';
-    } else if(!this.options.wrapAround) {
-        this.b_next.classList = '';
-        this.b_next_onpic.classList = '';
+    }
+    else if (this.currentImg+1 == this.galleries[this.currentGal].count && !this.options.wrapAround) { //Ostatnie zdjęcie
+        this.EOM.b_next.classList = 'hg-unvisible';
+        this.EOM.b_next_onpic.classList = 'hg-unvisible';
 
-        this.b_prev.classList = '';
-        this.b_prev_onpic.classList = '';
+        this.EOM.b_prev.classList = '';
+        this.EOM.b_prev_onpic.classList = '';
+
+    }
+    else if(!this.options.wrapAround) { //Dowolne zdjęcie
+        this.EOM.b_next.classList = '';
+        this.EOM.b_next_onpic.classList = '';
+
+        this.EOM.b_prev.classList = '';
+        this.EOM.b_prev_onpic.classList = '';
     }
 
     if(this.options.disableScrolling) document.body.classList += ' hg-disable-scrolling'; // Wyłącza scrollowanie
 }
 
 HesGallery.hide = function() {
-    this.galery.classList='';
+    this.EOM.galery.classList='';
     this.open = false;
     if(this.options.disableScrolling) document.body.classList.remove('hg-disable-scrolling'); // Włącza scrollowanie
 }
@@ -127,14 +133,14 @@ HesGallery.hide = function() {
 HesGallery.next = function() {
     if(this.options.wrapAround && this.currentImg == this.galleries[this.currentGal].count)
         this.show(this.currentGal, 1);
-    else if(this.currentImg < this.galleries[this.currentGal].count)
+    else if(this.currentImg+1 < this.galleries[this.currentGal].count)
         this.show(this.currentGal, this.currentImg+1);
 }
 
 HesGallery.prev = function() {
     if(this.options.wrapAround && this.currentImg == 1)
         this.show(this.currentGal, this.galleries[this.currentGal].count);
-    else if(this.currentImg > 1)
+    else if(this.currentImg+1 > 1)
         this.show(this.currentGal, this.currentImg-1);
 }
 
