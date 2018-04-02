@@ -1,6 +1,6 @@
 /*!
 
-    HesGallery ver 1.3.0 (01.04.2018r.)
+    HesGallery ver 1.3.2 (02.04.2018r.)
 
     Copyright (c) 2018 Artur Medrygal (amedrygal@heseya.com)
 
@@ -10,14 +10,28 @@
 */
 
 var HesGallery = {
-    executed: false,
-    currentImg: 0,
-    currentGal: 1,
-    options: {
+    options: { // Opcje domyślne
         wrapAround: false,
         disableScrolling: false,
         showImageCount: true,
         hostedStyles: true
+    }
+}
+
+function HesSingleGallery(index) {
+    this.index = index;
+    this.imgPaths = []; // ścieżki do plików
+    this.subTexts = []; // podpis pod zdjęciem
+    this.altTexts = []; // atrybut alt
+
+    this.count = document.querySelectorAll('.hes-gallery:nth-of-type('+this.index+') img').length; // liczba zdjęć w galerii
+
+    for(var i = 1; i<= this.count; i++) {
+        this.imgPaths[i] = document.querySelector('.hes-gallery:nth-of-type('+this.index+') img:nth-of-type('+i+')').src || '';
+        this.subTexts[i] = document.querySelector('.hes-gallery:nth-of-type('+this.index+') img:nth-of-type('+i+')').dataset.subtext || '';
+        this.altTexts[i] = document.querySelector('.hes-gallery:nth-of-type('+this.index+') img:nth-of-type('+i+')').dataset.alt || '';
+
+        document.querySelector('.hes-gallery:nth-of-type('+this.index+') img:nth-of-type('+i+')').setAttribute('onclick', 'HesGallery.show('+this.index+','+i+')');
     }
 }
 
@@ -26,7 +40,7 @@ HesGallery.setOptions = function(values) {
 }
 
 HesGallery.init = function() {
-    if(!this.executed) {
+    if(!this.executed) { // Tworzenie elementow gallerii
         if(this.options.hostedStyles) document.head.innerHTML += "<link rel='stylesheet' href='https://api.heseya.com/hesgallery/hes-gallery.min.css'>";
 
         document.body.innerHTML += "<div id='hgallery' style='visibility:hidden;'></div>";
@@ -52,34 +66,15 @@ HesGallery.init = function() {
         this.executed = true;
     }
     
-    this.count = document.querySelectorAll('.hes-gallery').length; // ilość galerii (roboczo)
+    this.count = document.querySelectorAll('.hes-gallery').length; // ilość galerii
     
-    this.galleries = []; // Ilość galerii
+    this.galleries = [];
     
-    for(var i = 1; i<=this.count; i++) {
+    for(var i = 1; i<=this.count; i++) { // tworzenie galerii
         this.galleries[i] = new HesSingleGallery(i);
     }
     
     return 'HesGallery initiated!';
-}
-
-class HesSingleGallery {
-    constructor(i) {
-        this.index = i;
-        this.imgPaths = []; // ścieżki do plików
-        this.subTexts = []; //podpis pod zdjęciem
-        this.altTexts = [];
-
-        this.count = document.querySelectorAll('.hes-gallery:nth-of-type('+this.index+') img').length;
-
-        for(var i = 1; i<= this.count; i++) { //TU JEST BROKEN
-            this.imgPaths[i] = document.querySelector('.hes-gallery:nth-of-type('+this.index+') img:nth-of-type('+i+')').src;
-            this.subTexts[i] = document.querySelector('.hes-gallery:nth-of-type('+this.index+') img:nth-of-type('+i+')').dataset.subtext || '';
-            this.altTexts[i] = document.querySelector('.hes-gallery:nth-of-type('+this.index+') img:nth-of-type('+i+')').dataset.alt || '';
-
-            document.querySelector('.hes-gallery:nth-of-type('+this.index+') img:nth-of-type('+i+')').setAttribute('onclick', 'HesGallery.show('+this.index+','+i+')');
-        }
-    }
 }
 
 HesGallery.show = function(g,i) {
@@ -89,9 +84,8 @@ HesGallery.show = function(g,i) {
     this.open = true;
 
     document.getElementById('hg-pic').setAttribute('src', this.galleries[g].imgPaths[i]); // ustawia ścieżke do zdjęcia
-    document.getElementById('hg-pic').alt = this.galleries[g].altTexts[i]; // ustawia atrybut alt
 
-    console.log( HesGallery.img );
+    document.getElementById('hg-pic').alt = this.galleries[g].altTexts[i]; // ustawia atrybut alt
 
     this.galery.classList = 'open';
 
@@ -147,7 +141,7 @@ HesGallery.prev = function() {
 addEventListener('keydown', function(e){
     if(e.keyCode == 39 && HesGallery.open) HesGallery.next();
     if(e.keyCode == 37 && HesGallery.open) HesGallery.prev();
-    if(e.keyCode == 27) HesGallery.hide();
+    if(e.keyCode == 27 && HesGallery.open) HesGallery.hide();
 });
 
 onload = function() {

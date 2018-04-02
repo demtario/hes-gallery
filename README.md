@@ -1,15 +1,14 @@
 ![logo] (https://api.heseya.com/hesgallery/logo.png)  
-v1.3.0 (jQuery Deletion Update)
+v1.4.0 (Multi Gallery Update)
 
 ## Jak użyć?
 Podepnij skrypty z galerią do strony  
-Możesz skorzystać z hostowanego skryptu podpinając niniejszy skrypt lub zaimportować go lokalnie pobierając paczkę z plikami, pamiętaj wtedy również o podpięciu arkusza styli CSS i wyłączeniu automatycznego podpinania styli w opcjach
+Możesz skorzystać z hostowanego skryptu podpinając niniejszy skrypt lub zaimportować go lokalnie pobierając paczkę z plikami, pamiętaj jednak wtedy o podpięciu arkusza styli CSS i wyłączeniu automatycznego podpinania styli w opcjach
 ```html
 <script src="https://api.heseya.com/hesgallery/hes-gallery.min.js"></script>
 ```
 
-Pojemnikowi z zdjęciami nadaj klasę  
-**Obecnie może istnieć tylko jedna galeria!**
+Każdemu containerowi ze zdjęciami który chcesz wykorzystać jako galerię nadaj klasę: (jeden container to jedna galeria)
 ```css
 .hes-gallery
 ```
@@ -19,7 +18,7 @@ Ewentualnie modyfikuj działanie skryptu przez **Opcje skryptu** (Akapit niżej)
 ## Przykładowa konstrukcja galerii
 ```html
 <div class="hes-gallery">
-    <img src="image1.jpg" alt="image1" data-subtext="Podpis zdjęcia" >
+    <img src="image1.jpg" alt="image1" data-subtext="Podpis zdjęcia" data-alt="tekst alternatywny" >
     <img src="image2.jpg" alt="image2" data-subtext="Podpis zdjęcia kolejnego" >
     <img src="image3.jpg" alt="image3" data-subtext="Kolejny podpis zdjęcia" >
     <img src="image4.jpg" alt="image4" data-subtext="Podpis czwartego już zdjęcia" >
@@ -33,7 +32,7 @@ Przykładowe zastosowanie:
 HesGallery.setOptions({
     wrapAround: true,
     disableScrolling: true
-});
+})
 ```
 
 Parametr|Wartość domyślna|Opis
