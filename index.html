@@ -20,31 +20,36 @@
     <main>
         <h2>Galeria 1</h2>
         <div class="hes-gallery">
-            <img src="obrazy/uno.jpeg" alt="image1"  data-alt="kociak">
-            <img src="obrazy/dos.jpeg" alt="image2" data-subtext="Podpis zdjęcia kolejnego" data-alt="wunsz">
-            <img src="obrazy/tres.jpeg" alt="image3" data-subtext="Kolejny podpis zdjęcia" >
-            <img src="obrazy/quatro.jpeg" alt="image4" data-subtext="Podpis czwartego już zdjęcia" >
-        </div>
-
-        <h2>Galeria 2 (soon)</h2>
-<!--
-        <div class="hes-gallery">
-            <img src="obrazy/dogo-uno.jpg" alt="image1"  data-alt="kociak">
+            <img src="obrazy/dogo-uno.jpg" alt="image1" data-subtext='piesiak'  data-alt="piesiak">
             <img src="obrazy/dogo-dos.jpeg" alt="image2" data-subtext="Podpis zdjęcia kolejnego" data-alt="wunsz">
             <img src="obrazy/dogo-tres.jpeg" alt="image3" data-subtext="Kolejny podpis zdjęcia" >
-            <img src="obrazy/dogo-quatro.jpeg" alt="image4" data-subtext="Podpis czwartego już zdjęcia" >
+            <img src="obrazy/dogo-cuatro.jpeg" alt="image4" data-subtext="Podpis czwartego już zdjęcia" >
         </div>
--->
+
+        <h2>Galeria 2</h2>
+        <div class="hes-gallery" data-wrap="true" data-img-count="false">
+            <img src="obrazy/uno.jpeg" alt="image1" data-subtext="kociak" data-alt="kociak">
+            <img src="obrazy/dos.jpeg" alt="image2" data-subtext="Kolejny kociak" data-alt="wunsz">
+            <img src="obrazy/tres.jpeg" alt="image3" data-subtext="Trzeci kociak ^^" >
+            <img src="obrazy/cuatro.jpeg" alt="image4" data-subtext="Leci czwart" data-alt="co jeest" >
+            <img src="obrazy/cinto.jpeg" alt="image5" data-subtext="Daleeeej" >
+            <img src="obrazy/seis.jpeg" alt="image6" data-subtext="Kozaaak" >
+            <img src="obrazy/siete.jpeg" alt="image7" data-subtext="Słodziaaaaak" >
+            <img src="obrazy/ocho.jpeg" alt="image8" data-subtext="Ostatni kociak :/" >
+        </div>
+
     </main>
 
     <script src="hes-gallery.js"></script>
     <script>
 
         HesGallery.setOptions({
-            wrapAround: false,
-            disableScrolling: true,
+            disableScrolling: false,
+            hostedStyles: false,
+            animations: true,
+
             showImageCount: true,
-            hostedStyles: true
+            wrapAround: true
         });
 
     </script>

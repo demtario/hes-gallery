@@ -57,3 +57,22 @@ p
 {
     margin: 0;
 }
+
+@media (max-width: 800px) {
+    main{
+        width: 100%;
+    }
+    header img{
+        width: 80%;
+        object-fit: contain;
+    }
+    .hes-gallery{
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+@media (max-width: 500px) {
+    .hes-gallery{
+        grid-template-columns: 1fr 1fr;
+    }
+}
