@@ -53,10 +53,11 @@ Domyślnie wszystkie galerie na stronie będą miały opcje globalne, jednak, je
 </div>
 ```
 Dostępne opcje lokalne:  
+
 Parametr | Odpowiednik globalny | Opis
 ---|---|---
-`data-wrap` | `wrapAround` | Zapętla galerię, czyli będąc na ostatnim zdjęciu galerii i przechodząc do następnego trafimy do pierwszego i analogicznie w drugą stronę
-`data-img-count` | `showImageCount` | Wyświetlanie numeru aktualnego zdjęcia i liczby wszystkich zdjęć (np. "1/5")
+`data-wrap` | *wrapAround* | Zapętla galerię, czyli będąc na ostatnim zdjęciu galerii i przechodząc do następnego trafimy do pierwszego i analogicznie w drugą stronę
+`data-img-count` | *showImageCount* | Wyświetlanie numeru aktualnego zdjęcia i liczby wszystkich zdjęć (np. "1/5")
 
 ## Dostępne funkcje
 Kilka funkcji sterujących galeriią które możesz umieścić w wybranym przez siebie miejscu
