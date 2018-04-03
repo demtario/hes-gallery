@@ -45,7 +45,7 @@ Parametr|Wartość domyślna|Opis
 `keyboardControl` | *true* | Sterowanie klawiaturą w galeriach
 
 ## Opcje poszczególnego bloku galerii
-Domyślnie wszystkie galerie na stronie będą miały opcje globalne, jednak, jeśli chcesz możesz nadać danemu zestawowi inne opcje dodając atrybuty do konterena z klasą `.hes-gallery`  
+Jeśli zechcesz możesz nadać danemu zestawowi inne opcje dodając atrybuty do konterena z klasą `.hes-gallery`  
 **Artubuty przyjmują tylko wartościu *true* lub *false*, w każdym innym przypadku galerią przyjmie wartości ustawione przez `HesGallery.setOptions()` lub domyślne!**
 ```html
 <div class="hes-gallery" data-wrap="true" data-img-count='false' >
