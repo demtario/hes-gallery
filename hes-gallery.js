@@ -32,23 +32,20 @@ function HesSingleGallery(index) {
 
     this.options = {};
 
-    if(document.querySelector('.hes-gallery:nth-of-type('+this.index+')').dataset.wrap=='true') this.options.wrapAround = true;
-    else if(document.querySelector('.hes-gallery:nth-of-type('+this.index+')').dataset.wrap=='false') this.options.wrapAround = false;
-    else this.options.wrapAround = HesGallery.options.wrapAround;
+    var gallery = document.getElementsByClassName('hes-gallery')[this.index]
 
-    if(document.querySelector('.hes-gallery:nth-of-type('+this.index+')').dataset.imgCount=='true') this.options.showImageCount = true;
-    else if(document.querySelector('.hes-gallery:nth-of-type('+this.index+')').dataset.imgCount=='false') this.options.showImageCount = false;
-    else this.options.showImageCount = HesGallery.options.showImageCount;
+    this.options.wrapAround = typeof gallery.dataset.wrap == 'undefined' ? HesGallery.options.wrapAround : gallery.dataset.wrap == 'true';
+    this.options.showImageCount = typeof gallery.dataset.imgCount == 'undefined' ? HesGallery.options.showImageCount : gallery.dataset.imgCount == 'true';
 
-    this.count = document.querySelectorAll('.hes-gallery:nth-of-type('+this.index+') img').length; // liczba zdjęć w galerii
+    [].forEach.call(gallery.getElementsByTagName('img'), function (image, i) {
+        this.imgPaths.push(image.src || '');
+        this.subTexts.push(image.dataset.subtext || '');
+        this.altTexts.push(image.dataset.alt || '');
 
-    for(var i = 0; i< this.count; i++) {
-        this.imgPaths[i] = document.querySelector('.hes-gallery:nth-of-type('+this.index+') img:nth-of-type('+(i+1)+')').src || '';
-        this.subTexts[i] = document.querySelector('.hes-gallery:nth-of-type('+this.index+') img:nth-of-type('+(i+1)+')').dataset.subtext || '';
-        this.altTexts[i] = document.querySelector('.hes-gallery:nth-of-type('+this.index+') img:nth-of-type('+(i+1)+')').dataset.alt || '';
+        image.setAttribute('onclick', 'HesGallery.show('+(this.index)+','+i+')');
+    }.bind(this));
 
-        document.querySelector('.hes-gallery:nth-of-type('+this.index+') img:nth-of-type('+(i+1)+')').setAttribute('onclick', 'HesGallery.show('+(this.index-1)+','+i+')');
-    }
+    this.count = this.imgPaths.length;
 }
 
 HesGallery.setOptions = function(values) {
@@ -92,7 +89,7 @@ HesGallery.init = function() {
     this.galleries = [];
     
     for(var i = 0; i<this.count; i++) { // tworzenie galerii
-        this.galleries[i] = new HesSingleGallery(i+1);
+        this.galleries[i] = new HesSingleGallery(i);
     }
     
     if(this.options.keyboardContol) {
