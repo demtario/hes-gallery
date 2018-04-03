@@ -38,7 +38,7 @@ function HesSingleGallery(index) {
 
     if(document.querySelector('.hes-gallery:nth-of-type('+this.index+')').dataset.imgCount=='true') this.options.showImageCount = true;
     else if(document.querySelector('.hes-gallery:nth-of-type('+this.index+')').dataset.imgCount=='false') this.options.showImageCount = false;
-    else this.options.wrapAround = HesGallery.options.showImageCount;
+    else this.options.showImageCount = HesGallery.options.showImageCount;
 
     this.count = document.querySelectorAll('.hes-gallery:nth-of-type('+this.index+') img').length; // liczba zdjęć w galerii
 

@@ -19,7 +19,7 @@
    
     <main>
         <h2>Galeria 1</h2>
-        <div class="hes-gallery" data-wrap="true" data-img-count="true">
+        <div class="hes-gallery">
             <img src="obrazy/dogo-uno.jpg" alt="image1" data-subtext='piesiak'  data-alt="piesiak">
             <img src="obrazy/dogo-dos.jpeg" alt="image2" data-subtext="Podpis zdjęcia kolejnego" data-alt="wunsz">
             <img src="obrazy/dogo-tres.jpeg" alt="image3" data-subtext="Kolejny podpis zdjęcia" >
@@ -27,7 +27,7 @@
         </div>
 
         <h2>Galeria 2</h2>
-        <div class="hes-gallery">
+        <div class="hes-gallery" data-wrap="true" data-img-count="false">
             <img src="obrazy/uno.jpeg" alt="image1" data-subtext="kociak" data-alt="kociak">
             <img src="obrazy/dos.jpeg" alt="image2" data-subtext="Kolejny kociak" data-alt="wunsz">
             <img src="obrazy/tres.jpeg" alt="image3" data-subtext="Trzeci kociak ^^" >
@@ -44,12 +44,11 @@
     <script>
 
         HesGallery.setOptions({
-            disableScrolling: true,
+            disableScrolling: false,
             hostedStyles: false,
-            animations: true,
+            animations: false,
 
-
-            showImageCount: false,
+            showImageCount: true,
             wrapAround: false
         });
 

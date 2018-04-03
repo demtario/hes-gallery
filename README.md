@@ -65,7 +65,7 @@ Kilka funkcji sterujących galeriią które możesz umieścić w wybranym przez 
 Funkcja | Opis
 ---|---
 `HesGallery.init()` | Pozwala na przeładowanie galerii zdjęć, jeśli np. w międzyczasie dynamicznie zmieniła się zawartość pojemnika galerii to dzięki tej funckji można na nowo załadować zdjęcia do skryptu
-`HesGallery.show(n)` | Wyświetla **n-te** zdjęcie z galerii
+`HesGallery.show(m, n)` | Wyświetla **n-te** zdjęcie z **m-tej** galerii
 `HesGallery.next()` | Wyświetla następne zdjęcie względem obecnego
 `HesGallery.prev()` | Wyświetla poprzednie zdjęcie względem obecnego
 `HesGallery.hide()` | Ukrywa galerię
