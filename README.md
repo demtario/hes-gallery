@@ -13,7 +13,7 @@ Każdemu containerowi ze zdjęciami który chcesz wykorzystać jako galerię nad
 .hes-gallery
 ```
 
-Ewentualnie modyfikuj działanie skryptu przez **Opcje skryptu** (Akapit niżej)
+Ewentualnie modyfikuj działanie galerii przy pomocy opcji opisanych niżej
 
 ## Przykładowa konstrukcja galerii
 ```html
@@ -37,11 +37,12 @@ HesGallery.setOptions({
 
 Parametr|Wartość domyślna|Opis
 ---|---|---
-`wrapAround` | false | Zapętla galerię, czyli będąc na ostatnim zdjęciu galerii i przechodząc do następnego trafimy do pierwszego i analogicznie w drugą stronę
-`disableScrolling` | false | Możliwość przewijania strony w momencie gdy uruchomiona jest galeria
-`showImageCount` | true | Wyświetlanie numeru aktualnego zdjęcia i liczby wszystkich zdjęć (np. "1/5")
-`hostedStyles` | true | Automatycznie podpina arkusz styli ze źródłem na api.heseya.com (wyłącz jeśli chcesz umieścić hes-gallery na własnym serwerze)
-`animations` | true | Animacje w trakcie korzystania z galerii
+`wrapAround` | *false* | Zapętla galerię, czyli będąc na ostatnim zdjęciu galerii i przechodząc do następnego trafimy do pierwszego i analogicznie w drugą stronę
+`showImageCount` | *true* | Wyświetlanie numeru aktualnego zdjęcia i liczby wszystkich zdjęć (np. "1/5")
+`disableScrolling` | *false* | Możliwość przewijania strony w momencie gdy uruchomiona jest galeria
+`hostedStyles` | *true* | Automatycznie podpina arkusz styli ze źródłem na api.heseya.com (wyłącz jeśli chcesz umieścić hes-gallery na własnym serwerze)
+`animations` | *true* | Animacje w trakcie korzystania z galerii
+`keyboardControl` | *true* | Sterowanie klawiaturą w galeriach
 
 ## Opcje poszczególnego bloku galerii
 Domyślnie wszystkie galerie na stronie będą miały opcje globalne, jednak, jeśli chcesz możesz nadać danemu zestawowi inne opcje dodając atrybuty do konterena z klasą `.hes-gallery`  
@@ -51,8 +52,8 @@ Domyślnie wszystkie galerie na stronie będą miały opcje globalne, jednak, je
     <!-- Some <img> here -->
 </div>
 ```
-Dostępne opcje lokalne:
-Parametr|Odpowiednik globalny|Opis
+Dostępne opcje lokalne:  
+Parametr | Odpowiednik globalny | Opis
 ---|---|---
 `data-wrap` | `wrapAround` | Zapętla galerię, czyli będąc na ostatnim zdjęciu galerii i przechodząc do następnego trafimy do pierwszego i analogicznie w drugą stronę
 `data-img-count` | `showImageCount` | Wyświetlanie numeru aktualnego zdjęcia i liczby wszystkich zdjęć (np. "1/5")

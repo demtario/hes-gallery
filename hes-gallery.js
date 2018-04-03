@@ -16,6 +16,7 @@ var HesGallery = {
         disableScrolling: false,
         hostedStyles: true,
         animations: true,
+        keyboardContol: true,
 
         //Lokalne
         wrapAround: false,
@@ -94,6 +95,14 @@ HesGallery.init = function() {
         this.galleries[i] = new HesSingleGallery(i+1);
     }
     
+    if(this.options.keyboardContol) {
+        addEventListener('keydown', function(e){
+            if(e.keyCode == 39 && HesGallery.open) HesGallery.next();
+            if(e.keyCode == 37 && HesGallery.open) HesGallery.prev();
+            if(e.keyCode == 27 && HesGallery.open) HesGallery.hide();
+        })
+    }
+
     return 'HesGallery initiated!';
 }
 
@@ -165,12 +174,6 @@ HesGallery.prev = function() {
     else if(this.currentImg+1 > 1)
         this.show(this.currentGal, this.currentImg-1);
 }
-
-addEventListener('keydown', function(e){
-    if(e.keyCode == 39 && HesGallery.open) HesGallery.next();
-    if(e.keyCode == 37 && HesGallery.open) HesGallery.prev();
-    if(e.keyCode == 27 && HesGallery.open) HesGallery.hide();
-});
 
 onload = function() {
     HesGallery.init();
