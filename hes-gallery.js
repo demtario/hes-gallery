@@ -1,6 +1,6 @@
 /*!
 
-    HesGallery ver 1.3.3 (02.04.2018r.)
+    HesGallery ver beta 1.4 (?.04.2018r.)
 
     Copyright (c) 2018 Artur Medrygal (amedrygal@heseya.com)
 
@@ -17,7 +17,7 @@ var HesGallery = {
         hostedStyles: true,
         animations: true,
 
-        //Docelowo lokalne
+        //Lokalne
         wrapAround: false,
         showImageCount: true
     }
@@ -29,10 +29,15 @@ function HesSingleGallery(index) {
     this.subTexts = []; // podpis pod zdjęciem
     this.altTexts = []; // atrybut alt
 
-    this.options = {
-        wrapAround: HesGallery.options.wrapAround,
-        showImageCount: HesGallery.options.showImageCount,
-    };
+    this.options = {};
+
+    if(document.querySelector('.hes-gallery:nth-of-type('+this.index+')').dataset.wrap=='true') this.options.wrapAround = true;
+    else if(document.querySelector('.hes-gallery:nth-of-type('+this.index+')').dataset.wrap=='false') this.options.wrapAround = false;
+    else this.options.wrapAround = HesGallery.options.wrapAround;
+
+    if(document.querySelector('.hes-gallery:nth-of-type('+this.index+')').dataset.imgCount=='true') this.options.showImageCount = true;
+    else if(document.querySelector('.hes-gallery:nth-of-type('+this.index+')').dataset.imgCount=='false') this.options.showImageCount = false;
+    else this.options.wrapAround = HesGallery.options.showImageCount;
 
     this.count = document.querySelectorAll('.hes-gallery:nth-of-type('+this.index+') img').length; // liczba zdjęć w galerii
 
