@@ -1,5 +1,5 @@
 ![logo] (https://api.heseya.com/hesgallery/logo.png)  
-v1.4.0 (Multi Gallery Update)
+v1.4 (Multi Gallery Update)
 
 ## Jak użyć?
 Podepnij skrypty z galerią do strony  

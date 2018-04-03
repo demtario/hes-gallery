@@ -1,6 +1,6 @@
 /*!
 
-    HesGallery ver beta 1.4 (?.04.2018r.)
+    HesGallery ver 1.4 (03.04.2018r.)
 
     Copyright (c) 2018 Artur Medrygal (amedrygal@heseya.com)
 
@@ -21,7 +21,8 @@ var HesGallery = {
         //Lokalne
         wrapAround: false,
         showImageCount: true
-    }
+    },
+    version: '1.4.0'
 }
 
 function HesSingleGallery(index) {
