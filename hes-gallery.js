@@ -1,6 +1,6 @@
 /*!
 
-    HesGallery ver 1.4 (03.04.2018r.)
+    HesGallery ver 1.4.1 (01.05.2018r.)
 
     Copyright (c) 2018 Artur Medrygal (amedrygal@heseya.com)
 
@@ -17,6 +17,7 @@ var HesGallery = {
         hostedStyles: true,
         animations: true,
         keyboardContol: true,
+        minResolution: 0,
 
         //Lokalne
         wrapAround: false,
@@ -105,6 +106,8 @@ HesGallery.init = function() {
 }
 
 HesGallery.show = function(g,i) {
+    if(innerWidth < this.options.minResolution) return false; //Galleria off dla danej rozdziałki
+
     this.currentImg = i;
     this.currentGal = g;
 
@@ -120,11 +123,20 @@ HesGallery.show = function(g,i) {
 
     this.EOM.pic_cont.dataset.subtext = this.galleries[g].subTexts[i];
 
-    if(this.galleries[this.currentGal].options.showImageCount) this.EOM.pic_cont.dataset.howmany =  (this.currentImg+1)+'/'+this.galleries[g].count;
+    if(
+        this.galleries[this.currentGal].options.showImageCount &&
+        this.galleries[this.currentGal].imgPaths.length != 1
+    ) this.EOM.pic_cont.dataset.howmany =  (this.currentImg+1)+'/'+this.galleries[g].count;
     else  this.EOM.pic_cont.dataset.howmany = '';
 
     // Zarządzanie widocznością przycisków przewijania
-    if(this.currentImg+1 == 1 && !this.galleries[this.currentGal].options.wrapAround) { //Pierwsze zdjęcie
+    if(this.galleries[this.currentGal].imgPaths.length == 1) { //Jedno zdjęcie w gallerii
+        this.EOM.b_prev.classList = 'hg-unvisible';
+        this.EOM.b_prev_onpic.classList = 'hg-unvisible';
+        this.EOM.b_next.classList = 'hg-unvisible';
+        this.EOM.b_next_onpic.classList = 'hg-unvisible';
+    }
+    else if(this.currentImg+1 == 1 && !this.galleries[this.currentGal].options.wrapAround) { //Pierwsze zdjęcie
         this.EOM.b_prev.classList = 'hg-unvisible';
         this.EOM.b_prev_onpic.classList = 'hg-unvisible';
 

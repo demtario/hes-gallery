@@ -43,6 +43,7 @@ Parametr|Wartość domyślna|Opis
 `hostedStyles` | *true* | Automatycznie podpina arkusz styli ze źródłem na api.heseya.com (wyłącz jeśli chcesz umieścić hes-gallery na własnym serwerze)
 `animations` | *true* | Animacje w trakcie korzystania z galerii
 `keyboardControl` | *true* | Sterowanie klawiaturą w galeriach
+`minResolution` | *0* | Minimalna szerokość ekranu dla której galeria będzie działać (w px)
 
 ## Opcje poszczególnego bloku galerii
 Jeśli zechcesz możesz nadać danemu zestawowi inne opcje dodając atrybuty do konterena z klasą `.hes-gallery`  
