@@ -1,6 +1,6 @@
 /*!
 
-    HesGallery ver 1.4.1 (01.05.2018r.)
+    HesGallery ver 1.4.2 (18.05.2018r.)
 
     Copyright (c) 2018 Artur Medrygal (amedrygal@heseya.com)
 
@@ -9,21 +9,21 @@
 
 */
 
-var HesGallery = {
+let HesGallery = {
     options: { // Opcje domyślne
 
         // Globalne
         disableScrolling: false,
         hostedStyles: true,
         animations: true,
-        keyboardContol: true,
+        keyboardControl: true,
         minResolution: 0,
 
         //Lokalne
         wrapAround: false,
         showImageCount: true
     },
-    version: '1.4.0'
+    version: '1.4.2'
 }
 
 function HesSingleGallery(index) {
@@ -34,7 +34,7 @@ function HesSingleGallery(index) {
 
     this.options = {};
 
-    var gallery = document.getElementsByClassName('hes-gallery')[this.index]
+    let gallery = document.getElementsByClassName('hes-gallery')[this.index]
 
     this.options.wrapAround = typeof gallery.dataset.wrap == 'undefined' ? HesGallery.options.wrapAround : gallery.dataset.wrap == 'true';
     this.options.showImageCount = typeof gallery.dataset.imgCount == 'undefined' ? HesGallery.options.showImageCount : gallery.dataset.imgCount == 'true';
@@ -51,7 +51,7 @@ function HesSingleGallery(index) {
 }
 
 HesGallery.setOptions = function(values) {
-    for(var key in values) this.options[key] = values[key];
+    for(let key in values) this.options[key] = values[key];
 }
 
 HesGallery.init = function() {
@@ -60,7 +60,11 @@ HesGallery.init = function() {
 
         if(this.options.hostedStyles) document.head.innerHTML += "<link rel='stylesheet' href='https://api.heseya.com/hesgallery/hes-gallery.min.css'>";
 
-        document.body.innerHTML += "<div id='hgallery' style='visibility:hidden;'></div>";
+        const gal = document.createElement('div')
+        gal.id = "hgallery"
+        gal.setAttribute('style', 'visibility:hidden;')
+        document.body.appendChild(gal)
+
         this.EOM.galery = document.getElementById('hgallery'); // Cała galeria
 
         this.EOM.galery.innerHTML += "<div id='hg-bg' onclick='HesGallery.hide()'></div>";
@@ -90,7 +94,7 @@ HesGallery.init = function() {
     
     this.galleries = [];
     
-    for(var i = 0; i<this.count; i++) { // tworzenie galerii
+    for(let i = 0; i<this.count; i++) { // tworzenie galerii
         this.galleries[i] = new HesSingleGallery(i);
     }
     
