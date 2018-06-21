@@ -1,5 +1,5 @@
-![logo] (https://api.heseya.com/hesgallery/logo.png)  
-v1.4 (Multi Gallery Update)
+# HesGallery
+Lekki, wolny od jQuery skrypt tworzący responsywną galerię
 
 ## Jak użyć?
 Podepnij skrypty z galerią do strony  
@@ -80,4 +80,4 @@ Parametr | Opis
 
 
 *Licencja: [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/)*  
-*Copyright 2018 [Artur Mędrygał](mailto:amedrygal@heseya.com) - [Heseya](https://heseya.com)*
+*Copyright 2018 [Artur Mędrygał](mailto:medrygal.artur@gmail.com)*

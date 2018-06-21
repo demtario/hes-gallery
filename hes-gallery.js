@@ -2,7 +2,7 @@
 
     HesGallery ver 1.4.2 (18.05.2018r.)
 
-    Copyright (c) 2018 Artur Medrygal (amedrygal@heseya.com)
+    Copyright (c) 2018 Artur Medrygal (medrygal.artur@gmail.com)
 
     Product under CC BY-NC-ND 4.0 licence
     https://creativecommons.org/licenses/by-nc-nd/4.0/
