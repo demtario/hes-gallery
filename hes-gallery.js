@@ -1,28 +1,29 @@
 /*!
 
-    HesGallery ver 1.4 (03.04.2018r.)
+    HesGallery ver 1.4.2 (18.05.2018r.)
 
-    Copyright (c) 2018 Artur Medrygal (amedrygal@heseya.com)
+    Copyright (c) 2018 Artur Medrygal (medrygal.artur@gmail.com)
 
     Product under CC BY-NC-ND 4.0 licence
     https://creativecommons.org/licenses/by-nc-nd/4.0/
 
 */
 
-var HesGallery = {
+let HesGallery = {
     options: { // Opcje domyślne
 
         // Globalne
         disableScrolling: false,
         hostedStyles: true,
         animations: true,
-        keyboardContol: true,
+        keyboardControl: true,
+        minResolution: 0,
 
         //Lokalne
         wrapAround: false,
         showImageCount: true
     },
-    version: '1.4.0'
+    version: '1.4.2'
 }
 
 function HesSingleGallery(index) {
@@ -33,7 +34,7 @@ function HesSingleGallery(index) {
 
     this.options = {};
 
-    var gallery = document.getElementsByClassName('hes-gallery')[this.index]
+    let gallery = document.getElementsByClassName('hes-gallery')[this.index]
 
     this.options.wrapAround = typeof gallery.dataset.wrap == 'undefined' ? HesGallery.options.wrapAround : gallery.dataset.wrap == 'true';
     this.options.showImageCount = typeof gallery.dataset.imgCount == 'undefined' ? HesGallery.options.showImageCount : gallery.dataset.imgCount == 'true';
@@ -50,7 +51,7 @@ function HesSingleGallery(index) {
 }
 
 HesGallery.setOptions = function(values) {
-    for(var key in values) this.options[key] = values[key];
+    for(let key in values) this.options[key] = values[key];
 }
 
 HesGallery.init = function() {
@@ -59,7 +60,11 @@ HesGallery.init = function() {
 
         if(this.options.hostedStyles) document.head.innerHTML += "<link rel='stylesheet' href='https://api.heseya.com/hesgallery/hes-gallery.min.css'>";
 
-        document.body.innerHTML += "<div id='hgallery' style='visibility:hidden;'></div>";
+        const gal = document.createElement('div')
+        gal.id = "hgallery"
+        gal.setAttribute('style', 'visibility:hidden;')
+        document.body.appendChild(gal)
+
         this.EOM.galery = document.getElementById('hgallery'); // Cała galeria
 
         this.EOM.galery.innerHTML += "<div id='hg-bg' onclick='HesGallery.hide()'></div>";
@@ -89,7 +94,7 @@ HesGallery.init = function() {
     
     this.galleries = [];
     
-    for(var i = 0; i<this.count; i++) { // tworzenie galerii
+    for(let i = 0; i<this.count; i++) { // tworzenie galerii
         this.galleries[i] = new HesSingleGallery(i);
     }
     
@@ -105,6 +110,8 @@ HesGallery.init = function() {
 }
 
 HesGallery.show = function(g,i) {
+    if(innerWidth < this.options.minResolution) return false; //Galleria off dla danej rozdziałki
+
     this.currentImg = i;
     this.currentGal = g;
 
@@ -120,11 +127,20 @@ HesGallery.show = function(g,i) {
 
     this.EOM.pic_cont.dataset.subtext = this.galleries[g].subTexts[i];
 
-    if(this.galleries[this.currentGal].options.showImageCount) this.EOM.pic_cont.dataset.howmany =  (this.currentImg+1)+'/'+this.galleries[g].count;
+    if(
+        this.galleries[this.currentGal].options.showImageCount &&
+        this.galleries[this.currentGal].imgPaths.length != 1
+    ) this.EOM.pic_cont.dataset.howmany =  (this.currentImg+1)+'/'+this.galleries[g].count;
     else  this.EOM.pic_cont.dataset.howmany = '';
 
     // Zarządzanie widocznością przycisków przewijania
-    if(this.currentImg+1 == 1 && !this.galleries[this.currentGal].options.wrapAround) { //Pierwsze zdjęcie
+    if(this.galleries[this.currentGal].imgPaths.length == 1) { //Jedno zdjęcie w gallerii
+        this.EOM.b_prev.classList = 'hg-unvisible';
+        this.EOM.b_prev_onpic.classList = 'hg-unvisible';
+        this.EOM.b_next.classList = 'hg-unvisible';
+        this.EOM.b_next_onpic.classList = 'hg-unvisible';
+    }
+    else if(this.currentImg+1 == 1 && !this.galleries[this.currentGal].options.wrapAround) { //Pierwsze zdjęcie
         this.EOM.b_prev.classList = 'hg-unvisible';
         this.EOM.b_prev_onpic.classList = 'hg-unvisible';
 

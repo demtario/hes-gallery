@@ -1,5 +1,5 @@
-![logo] (https://api.heseya.com/hesgallery/logo.png)  
-v1.4 (Multi Gallery Update)
+# HesGallery
+Lekki, wolny od jQuery skrypt tworzący responsywną galerię
 
 ## Jak użyć?
 Podepnij skrypty z galerią do strony  
@@ -43,6 +43,7 @@ Parametr|Wartość domyślna|Opis
 `hostedStyles` | *true* | Automatycznie podpina arkusz styli ze źródłem na api.heseya.com (wyłącz jeśli chcesz umieścić hes-gallery na własnym serwerze)
 `animations` | *true* | Animacje w trakcie korzystania z galerii
 `keyboardControl` | *true* | Sterowanie klawiaturą w galeriach
+`minResolution` | *0* | Minimalna szerokość ekranu dla której galeria będzie działać (w px)
 
 ## Opcje poszczególnego bloku galerii
 Jeśli zechcesz możesz nadać danemu zestawowi inne opcje dodając atrybuty do konterena z klasą `.hes-gallery`  
@@ -79,4 +80,4 @@ Parametr | Opis
 
 
 *Licencja: [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/)*  
-*Copyright 2018 [Artur Mędrygał](mailto:amedrygal@heseya.com) - [Heseya](https://heseya.com)*
+*Copyright 2018 [Artur Mędrygał](mailto:medrygal.artur@gmail.com)*
