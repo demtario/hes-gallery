@@ -1,6 +1,6 @@
 /*!
 
-    HesGallery ver 1.4.2 (18.05.2018r.)
+    HesGallery ver 1.4.3 (22.06.2018r.)
 
     Copyright (c) 2018 Artur Medrygal (medrygal.artur@gmail.com)
 
@@ -39,12 +39,16 @@ function HesSingleGallery(index) {
     this.options.wrapAround = typeof gallery.dataset.wrap == 'undefined' ? HesGallery.options.wrapAround : gallery.dataset.wrap == 'true';
     this.options.showImageCount = typeof gallery.dataset.imgCount == 'undefined' ? HesGallery.options.showImageCount : gallery.dataset.imgCount == 'true';
 
+    let disabledCount = 0;
     [].forEach.call(gallery.getElementsByTagName('img'), function (image, i) {
-        this.imgPaths.push(image.src || '');
-        this.subTexts.push(image.dataset.subtext || '');
-        this.altTexts.push(image.dataset.alt || '');
-
-        image.setAttribute('onclick', 'HesGallery.show('+(this.index)+','+i+')');
+        if(image.dataset.disabled == 'true') disabledCount++
+        else {
+            this.imgPaths.push(image.src || '');
+            this.subTexts.push(image.dataset.subtext || '');
+            this.altTexts.push(image.dataset.alt || '');
+    
+            image.setAttribute('onclick', 'HesGallery.show('+(this.index)+','+(i - disabledCount)+')');
+        }
     }.bind(this));
 
     this.count = this.imgPaths.length;

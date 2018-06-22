@@ -77,6 +77,7 @@ Parametr | Opis
 ---|---
 `data-subtext` | Tworzy podpis pod zdjęciem w galerii
 `data-alt` | Ustawia atrybut alt obrazka wyświetlanego w galerii
+`data-disabled` | Wartość `true` sprawi, że dane zdjęcie nie będzie uwzględnione w galerii
 
 
 *Licencja: [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/)*  
