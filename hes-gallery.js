@@ -1,6 +1,6 @@
 /*!
 
-    HesGallery ver 1.4.3 (22.06.2018r.)
+    HesGallery ver 1.4.4 (04.08.2018r.)
 
     Copyright (c) 2018 Artur Medrygal (medrygal.artur@gmail.com)
 
@@ -43,9 +43,11 @@ function HesSingleGallery(index) {
     [].forEach.call(gallery.getElementsByTagName('img'), function (image, i) {
         if(image.dataset.disabled == 'true') disabledCount++
         else {
-            this.imgPaths.push(image.src || '');
-            this.subTexts.push(image.dataset.subtext || '');
-            this.altTexts.push(image.dataset.alt || '');
+
+            if(image.dataset.fullsize != null) this.imgPaths.push(image.dataset.fullsize || '')
+            else this.imgPaths.push(image.src || '')
+            this.subTexts.push(image.dataset.subtext || '')
+            this.altTexts.push(image.dataset.alt || '')
     
             image.setAttribute('onclick', 'HesGallery.show('+(this.index)+','+(i - disabledCount)+')');
         }

@@ -47,7 +47,7 @@ Parametr | Wartość domyślna | Opis
 
 ## Opcje poszczególnego bloku galerii
 Jeśli zechcesz możesz nadać danemu zestawowi zdjęć inne opcje dodając atrybuty do konterena z klasą `.hes-gallery`  
-**Artubuty przyjmują tylko wartościu *true* lub *false*, w każdym innym przypadku galerią przyjmie wartości ustawione przez `HesGallery.setOptions()` lub domyślne!**
+**Artubuty przyjmują tylko wartości *true* lub *false*, w każdym innym przypadku galerią przyjmie wartości ustawione przez `HesGallery.setOptions()` lub domyślne!**
 ```html
 <div class="hes-gallery" data-wrap="true" data-img-count='false' >
     <!-- Some <img> here -->
@@ -78,6 +78,7 @@ Parametr | Opis
 `data-subtext` | Tworzy podpis pod zdjęciem w galerii
 `data-alt` | Ustawia atrybut alt obrazka wyświetlanego w galerii
 `data-disabled` | Wartość `true` sprawi, że dane zdjęcie nie będzie uwzględnione w galerii
+`data-fullsize` | Jeżeli chcemy wykorzystać miniaturki to do tagu `src` zwykłego obrazka podajemy ścieżke do miniatury a do tagu `data-fullsize` ścieżkę do pełnej wersji grafiki
 
 
 *Licencja: [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/)*  
