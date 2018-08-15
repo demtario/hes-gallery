@@ -15,6 +15,7 @@ header{
 header h1{
     color: #481212;
     font-weight: 300;
+    margin-bottom: 10px;
 }
 
 main{
@@ -23,6 +24,20 @@ main{
     box-sizing: border-box;
     margin: 0 auto;
     background-color: #eee;
+}
+
+.btn {
+    display: inline-block;
+    background-color: firebrick;
+    padding: 6px 12px;
+    color: #fff;
+    border-radius: 18px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.btn:hover{
+    filter: brightness(1.1)
 }
 
 .hes-gallery{

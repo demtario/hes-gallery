@@ -1,5 +1,5 @@
 # HesGallery
-Lekki, wolny od jQuery skrypt tworzący responsywną galerię
+Lekki, wolny od zależności skrypt tworzący responsywną galerię
 
 ## Jak użyć?
 Podepnij skrypty z galerią do strony  
@@ -81,5 +81,5 @@ Parametr | Opis
 `data-fullsize` | Jeżeli chcemy wykorzystać miniaturki to do tagu `src` zwykłego obrazka podajemy ścieżke do miniatury a do tagu `data-fullsize` ścieżkę do pełnej wersji grafiki
 
 
-*Licencja: [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/)*  
+*Licence: [MIT](https://opensource.org/licenses/MIT)*  
 *Copyright 2018 [Artur Mędrygał](mailto:medrygal.artur@gmail.com)*

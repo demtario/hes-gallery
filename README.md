@@ -1,5 +1,5 @@
 # HesGallery
-Light, jQuery-free script creating a responsive gallery
+Light, dependency free script creating a responsive gallery
 
 *Full English translation soon*
 
@@ -83,5 +83,5 @@ Parameter | Description
 `data-fullsize` | If we want to use thumbnails, we give the thumbnail path to the `src` tag and a path to the full version of graphics to the` data-fullsize` tag
 
 
-*Licence: [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/)*  
+*Licence: [MIT](https://opensource.org/licenses/MIT)*  
 *Copyright 2018 [Artur Mędrygał](mailto:medrygal.artur@gmail.com)*
