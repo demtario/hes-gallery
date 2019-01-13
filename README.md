@@ -1,8 +1,6 @@
 # HesGallery
 Light, dependency free script creating a responsive gallery
 
-*Full English translation soon*
-
 ## How to use?
 Attach scripts to page
 You can use a hosted version by hooking this script or import it locally by downloading a package of files, but remember to attach a CSS style sheet and disable the auto-hooking of styles in the options
@@ -67,7 +65,7 @@ Some of functions which you can use to manage the gallery
 
 Function | Description
 ---|---
-`HesGallery.init()` | Pozwala na przeładowanie galerii zdjęć, jeśli np. w międzyczasie dynamicznie zmieniła się zawartość pojemnika galerii to dzięki tej funckji można na nowo załadować zdjęcia do skryptu
+`HesGallery.init()` | Reloads the gallery in case when for example content of gallery container has changed and we want to have actual images in gallery
 `HesGallery.show(m, n)` | Show **n** photo from **m** gallery
 `HesGallery.next()` | Show next photo
 `HesGallery.prev()` | Show previous photo

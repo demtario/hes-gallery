@@ -4,8 +4,7 @@
 
     Copyright (c) 2018 Artur Medrygal (medrygal.artur@gmail.com)
 
-    Product under CC BY-NC-ND 4.0 licence
-    https://creativecommons.org/licenses/by-nc-nd/4.0/
+    Product under MIT licence
 
 */
 
@@ -23,7 +22,7 @@ let HesGallery = {
         wrapAround: false,
         showImageCount: true
     },
-    version: '1.4.2'
+    version: '1.4.4'
 }
 
 function HesSingleGallery(index) {

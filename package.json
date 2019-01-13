@@ -1,0 +1,28 @@
+{
+  "name": "hes-gallery",
+  "version": "1.4.4",
+  "description": "Light, dependency free script creating a responsive gallery",
+  "main": "hes-gallery.js",
+  "scripts": {
+    "build": "gulp build",
+    "deploy": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/demtario/hes-gallery.git"
+  },
+  "author": "Artur Mędrygał @demtario",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/demtario/hes-gallery/issues"
+  },
+  "homepage": "https://amedrygal.pl/hes-gallery/",
+  "devDependencies": {
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^6.0.0",
+    "gulp-clean-css": "^4.0.0",
+    "gulp-minify": "^3.1.0",
+    "gulp-rename": "^1.4.0"
+  }
+}

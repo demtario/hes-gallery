@@ -1,0 +1,59 @@
+<!doctype html>
+
+<html>
+
+<head>
+    <title>HesGallery</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="elo">
+
+    <link rel="stylesheet" href="../src/hes-gallery.css">
+
+    <header>
+        <h1>HesGallery</h1>
+        <a href="https://github.com/demtario/hes-gallery" target="_blank" class="btn">GitHub repository</a>
+    </header>
+   
+    <main>
+        <h2>Gallery 1</h2>
+        <div class="hes-gallery">
+            <img src="img/dogo-uno-min.jpg" alt="image1" data-fullsize="img/dogo-uno.jpg" data-subtext='piesiak'  data-alt="piesiak">
+            <img src="img/dogo-dos.jpeg" alt="image2" data-subtext="Podpis zdjęcia kolejnego" data-alt="wunsz" data-disabled="true">
+            <img src="img/dogo-tres.jpeg" alt="image3" data-subtext="Kolejny podpis zdjęcia" >
+            <img src="img/dogo-cuatro.jpeg" alt="image4" data-subtext="Podpis czwartego już zdjęcia" >
+        </div>
+
+        <h2>Gallery 2</h2>
+        <div class="hes-gallery" data-wrap="true" data-img-count="false">
+            <img src="img/uno.jpeg" alt="image1" data-subtext="kociak" data-alt="kociak">
+            <img src="img/dos.jpeg" alt="image2" data-subtext="Kolejny kociak" data-alt="wunsz">
+            <img src="img/tres.jpeg" alt="image3" data-subtext="Trzeci kociak ^^" >
+            <img src="img/cuatro.jpeg" alt="image4" data-subtext="Leci czwart" data-alt="co jeest" >
+            <img src="img/cinto.jpeg" alt="image5" data-subtext="Daleeeej" >
+            <img src="img/seis.jpeg" alt="image6" data-subtext="Kozaaak" >
+            <img src="img/siete.jpeg" alt="image7" data-subtext="Słodziaaaaak" >
+            <img src="img/ocho.jpeg" alt="image8" data-subtext="Ostatni kociak :/" >
+        </div>
+
+    </main>
+
+    <script src="../src/hes-gallery.js"></script>
+    <script>
+
+        HesGallery.setOptions({
+            disableScrolling: false,
+            hostedStyles: false,
+            animations: true,
+            minResolution: 1000,
+
+            showImageCount: true,
+            wrapAround: true
+        });
+
+    </script>
+</body>
+</html>
