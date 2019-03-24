@@ -1,6 +1,6 @@
 /*!
 
-    HesGallery ver 1.4.4 (04.08.2018r.)
+    HesGallery ver 2.0 (09.02.2019r.)
 
     Copyright (c) 2018 Artur Medrygal (medrygal.artur@gmail.com)
 
@@ -8,7 +8,7 @@
 
 */
 
-let HesGallery = {
+const HesGallery = {
     options: { // Opcje domyślne
 
         // Globalne
@@ -22,37 +22,81 @@ let HesGallery = {
         wrapAround: false,
         showImageCount: true
     },
-    version: '1.4.4'
+    version: '2.0'
 }
 
-function HesSingleGallery(index) {
-    this.index = index;
-    this.imgPaths = []; // ścieżki do plików
-    this.subTexts = []; // podpis pod zdjęciem
-    this.altTexts = []; // atrybut alt
+class HesGall {
 
-    this.options = {};
+    options = { // Opcje domyślne
 
-    let gallery = document.getElementsByClassName('hes-gallery')[this.index]
+        // Globalne
+        disableScrolling: false,
+        hostedStyles: true,
+        animations: true,
+        keyboardControl: true,
+        minResolution: 0,
+        className: 'hes-gallery',
 
-    this.options.wrapAround = typeof gallery.dataset.wrap == 'undefined' ? HesGallery.options.wrapAround : gallery.dataset.wrap == 'true';
-    this.options.showImageCount = typeof gallery.dataset.imgCount == 'undefined' ? HesGallery.options.showImageCount : gallery.dataset.imgCount == 'true';
+        //Lokalne
+        wrapAround: false,
+        showImageCount: true
+    }
+    version = '2.0'
 
-    let disabledCount = 0;
-    [].forEach.call(gallery.getElementsByTagName('img'), function (image, i) {
-        if(image.dataset.disabled == 'true') disabledCount++
-        else {
+    constructor(settings) {
+        //zmiana ustawień
+        for(let key in settings) this.options[key] = values[key]
 
-            if(image.dataset.fullsize != null) this.imgPaths.push(image.dataset.fullsize || '')
-            else this.imgPaths.push(image.src || '')
-            this.subTexts.push(image.dataset.subtext || '')
-            this.altTexts.push(image.dataset.alt || '')
-    
-            image.setAttribute('onclick', 'HesGallery.show('+(this.index)+','+(i - disabledCount)+')');
-        }
-    }.bind(this));
+        this.init()
+    }
 
-    this.count = this.imgPaths.length;
+    init() {
+
+    }
+
+    createGalleryElements() {
+        this.elements = {}
+        const wrapper = document.createDocumentFragment()
+
+        this.elements.gallery = document.createElement('div')
+        gallery.id = "hgallery"
+        gallery.setAttribute('style', 'visibility:hidden;')
+        
+        wrapper.appendChild(this.elements.gallery)
+
+    }
+}
+
+class HesSingleGallery {
+    constructor(index) {
+        this.index = index;
+        this.imgPaths = []; // ścieżki do plików
+        this.subTexts = []; // podpis pod zdjęciem
+        this.altTexts = []; // atrybut alt
+
+        this.options = {};
+
+        let gallery = document.getElementsByClassName('hes-gallery')[this.index]
+
+        this.options.wrapAround = typeof gallery.dataset.wrap == 'undefined' ? HesGallery.options.wrapAround : gallery.dataset.wrap == 'true';
+        this.options.showImageCount = typeof gallery.dataset.imgCount == 'undefined' ? HesGallery.options.showImageCount : gallery.dataset.imgCount == 'true';
+
+        let disabledCount = 0;
+        gallery.querySelectorAll('img').forEach((image, i) => {
+            if(image.dataset.disabled == 'true') disabledCount++
+            else {
+
+                if(image.dataset.fullsize != null) this.imgPaths.push(image.dataset.fullsize || '')
+                else this.imgPaths.push(image.src || '')
+                this.subTexts.push(image.dataset.subtext || '')
+                this.altTexts.push(image.dataset.alt || '')
+        
+                image.setAttribute('onclick', 'HesGallery.show('+(this.index)+','+(i - disabledCount)+')');
+            }
+        });
+
+        this.count = this.imgPaths.length;
+    }
 }
 
 HesGallery.setOptions = function(values) {
