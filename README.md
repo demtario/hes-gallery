@@ -76,8 +76,7 @@ Function | Description
 Parameter | Description
 ---|---
 `data-subtext` | He creates a signature under the picture in the gallery
-`data-alt` | Sets the alt attribute of the image displayed in the gallery
-`data-disabled` | The value `true` will cause that the image will not be included in the gallery
+`data-disabled` | If set will cause that the image will not be included in the gallery
 `data-fullsize` | If we want to use thumbnails, we give the thumbnail path to the `src` tag and a path to the full version of graphics to the` data-fullsize` tag
 
 
