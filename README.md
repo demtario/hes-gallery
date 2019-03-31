@@ -3,12 +3,12 @@ Light, dependency free script creating a responsive gallery
 
 ## How to use?
 Attach scripts to page
-You can use a hosted version by hooking this script or import it locally by downloading a package of files, but remember to attach a CSS style sheet and disable the auto-hooking of styles in the options
+You can use a hosted version by hooking this script or import it locally by downloading a package of files, but remember to attach a CSS style sheet and disable the auto-hooking of styles in the options (more in *Global options* section). I recommend using hosted version only for test purpose, becouse I can not give a guarantee for this hosting in a longer duration of time.
 ```html
 <script src="https://api.heseya.com/hesgallery/hes-gallery.min.js"></script>
 ```
 
-For each container with photos that you want to use as a gallery, give the class: (Each container is a single gallery)
+For each container with photos that you want to use as a gallery, give the class: (Each container is a singe, independent gallery)
 ```css
 .hes-gallery
 ```
@@ -18,7 +18,7 @@ You can modify the options of the gallery using function described below
 ## Sample gallery design
 ```html
 <div class="hes-gallery">
-    <img src="image1.jpg" alt="image1" data-subtext="Subtext" data-alt="Alternative text" />
+    <img src="image1.jpg" alt="image1" data-subtext="Subtext" />
     <img src="image2.jpg" alt="image2" data-subtext="Second subtext" />
     <img src="image3.jpg" alt="image3" data-subtext="Subtext" />
     <img src="image4.jpg" alt="image4" data-subtext="Subtext" />
