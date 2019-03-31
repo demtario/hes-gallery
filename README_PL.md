@@ -3,12 +3,12 @@ Lekki, wolny od zależności skrypt tworzący responsywną galerię
 
 ## Jak użyć?
 Podepnij skrypty z galerią do strony  
-Możesz skorzystać z hostowanego skryptu podpinając niniejszy skrypt lub zaimportować go lokalnie pobierając paczkę z plikami, pamiętaj jednak wtedy o podpięciu arkusza styli CSS i wyłączeniu automatycznego podpinania styli w opcjach
+Możesz skorzystać z hostowanego skryptu podpinając niniejszy skrypt lub zaimportować go lokalnie pobierając paczkę z plikami, pamiętaj jednak wtedy o podpięciu arkusza styli CSS i wyłączeniu automatycznego podpinania styli w opcjach. Nie zalecam używania poniższego zapisu na produkcyjnej wersji aplikacji, ponieważ nie mogę zapewnić niezakłóconego działania hostingu.
 ```html
 <script src="https://api.heseya.com/hesgallery/hes-gallery.min.js"></script>
 ```
 
-Każdemu containerowi ze zdjęciami który chcesz wykorzystać jako galerię nadaj klasę: (jeden container to jedna galeria)
+Każdemu containerowi ze zdjęciami który chcesz wykorzystać jako galerię nadaj klasę: (jeden container to jedna niezależna galeria)
 ```css
 .hes-gallery
 ```
@@ -76,8 +76,7 @@ Funkcja | Opis
 Parametr | Opis
 ---|---
 `data-subtext` | Tworzy podpis pod zdjęciem w galerii
-`data-alt` | Ustawia atrybut alt obrazka wyświetlanego w galerii
-`data-disabled` | Wartość `true` sprawi, że dane zdjęcie nie będzie uwzględnione w galerii
+`data-disabled` | Jeśli istnieje sprawi, że dane zdjęcie nie będzie uwzględnione w galerii
 `data-fullsize` | Jeżeli chcemy wykorzystać miniaturki to do tagu `src` zwykłego obrazka podajemy ścieżke do miniatury a do tagu `data-fullsize` ścieżkę do pełnej wersji grafiki
 
 
