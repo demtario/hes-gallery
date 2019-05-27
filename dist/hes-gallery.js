@@ -1,6 +1,6 @@
 /*!
 
-    HesGallery ver 1.4.6 (31.03.2019r.)
+    HesGallery ver 1.4.7 (27.05.2019r.)
 
     Copyright (c) 2018-2019 Artur Medrygal (medrygal.artur@gmail.com)
 
@@ -22,7 +22,7 @@ const HesGallery = {
         wrapAround: false,
         showImageCount: true
     },
-    version: '1.4.5'
+    version: '1.4.7'
 }
 
 function HesSingleGallery(index) {
