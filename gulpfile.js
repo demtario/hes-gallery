@@ -3,6 +3,7 @@ const minify = require('gulp-minify')
 const autoprefixer = require('gulp-autoprefixer')
 const clean = require('gulp-clean-css')
 const del = require('del')
+const babel = require('gulp-babel')
 const rename = require('gulp-rename')
 
 const paths = {
@@ -17,9 +18,7 @@ const paths = {
 gulp.task('build', ['clean'], () => {
   // CSS
   gulp.src(paths.src.css)
-    .pipe(autoprefixer({
-      browsers: ['last 2 versions']
-    }))
+    .pipe(autoprefixer())
     .pipe(gulp.dest(paths.dist))
     .pipe(clean())
     .pipe(rename({
@@ -29,6 +28,17 @@ gulp.task('build', ['clean'], () => {
 
   // JavaScript
   gulp.src(paths.src.js)
+    .pipe(babel({
+      presets: [['env', {
+        modules: false
+      }]],
+    }))
+      .on('error', function(err) {
+        console.error('[Compilation Error]')
+        console.log('error Babel: ' + err.message + '\n')
+        console.log(err.codeFrame)
+        this.emit('end')
+      })
     .pipe(minify({
       preserveComments: 'some',
       ext:{
@@ -37,6 +47,11 @@ gulp.task('build', ['clean'], () => {
     },
     }))
     .pipe(gulp.dest(paths.dist))
+})
+
+gulp.task('watch', ['build'], () => {
+  gulp.watch(paths.src.css, ['build'])
+  gulp.watch(paths.src.js, ['build'])
 })
 
 gulp.task('clean', () => {
