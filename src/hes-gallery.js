@@ -1,8 +1,8 @@
 /*!
 
-    HesGallery ver 1.4.7 (27.05.2019r.)
+    HesGallery ver 1.4.8 (16.06.2019r.)
 
-    Copyright (c) 2018-2019 Artur Medrygal (medrygal.artur@gmail.com)
+    Copyright (c) 2018-2019 Artur Medrygal <medrygal.artur@gmail.com>
 
     Product under MIT licence
 
@@ -128,7 +128,7 @@ HesGallery.show = function(g,i) {
 
     document.getElementById('hg-pic').alt = this.galleries[g].altTexts[i]; // Sets alt attribute
 
-    this.elements.galery.classList = 'open';
+    this.elements.galery.classList.add('open');
 
     this.elements.pic_cont.dataset.subtext = this.galleries[g].subTexts[i];
 
@@ -173,7 +173,7 @@ HesGallery.show = function(g,i) {
 HesGallery.hide = function() {
     if(this.options.animations) this.elements.pic_cont.classList.add('hg-transition');
 
-    this.elements.galery.classList='';
+    this.elements.galery.classList.remove('open');
     this.open = false;
     if(this.options.disableScrolling) document.body.classList.remove('hg-disable-scrolling'); // Enable scroll
 }
@@ -192,6 +192,11 @@ HesGallery.prev = function() {
         this.show(this.currentGal, this.currentImg-1);
 }
 
-window.addEventListener('load', () => {
+document.addEventListener('DOMContentLoaded', () => {
     HesGallery.init();
 })
+
+// NodeList polyfill
+if (typeof NodeList !== "undefined" && NodeList.prototype && !NodeList.prototype.forEach) {
+    NodeList.prototype.forEach = Array.prototype.forEach;
+}
