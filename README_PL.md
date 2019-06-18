@@ -1,13 +1,21 @@
 # HesGallery
 Lekki, wolny od zależności skrypt tworzący responsywną galerię
 
-## Jak użyć?
+## Instalacja
 Podepnij skrypty z galerią do strony  
-Możesz skorzystać z hostowanego skryptu podpinając niniejszy skrypt lub zaimportować go lokalnie pobierając paczkę z plikami, pamiętaj jednak wtedy o podpięciu arkusza styli CSS i wyłączeniu automatycznego podpinania styli w opcjach. Nie zalecam używania poniższego zapisu na produkcyjnej wersji aplikacji, ponieważ nie mogę zapewnić niezakłóconego działania hostingu.
+Możesz skorzystać z hostowanego skryptu podpinając niniejszy skrypt lub zaimportować go lokalnie pobierając paczkę z plikami, pamiętaj jednak wtedy o podpięciu arkusza styli CSS i wyłączeniu automatycznego podpinania styli w opcjach.
 ```html
-<script src="https://api.heseya.com/hesgallery/hes-gallery.min.js"></script>
+<script src="https://unpkg.com/hes-gallery/dist/hes-gallery.min.js"></script>
 ```
 
+Możesz też zainstalować package przy użyciu **npm** lub **yarn**
+```
+$ npm i hes-gallery
+
+$ yarn add hes-gallery
+```
+
+## Jak użyć?
 Każdemu containerowi ze zdjęciami który chcesz wykorzystać jako galerię nadaj klasę: (jeden container to jedna niezależna galeria)
 ```css
 .hes-gallery
@@ -44,6 +52,7 @@ Parametr | Wartość domyślna | Opis
 `animations` | *true* | Animacje w trakcie korzystania z galerii
 `keyboardControl` | *true* | Sterowanie klawiaturą w galeriach
 `minResolution` | *0* | Minimalna szerokość ekranu dla której galeria będzie działać (w px)
+`autoInit` | *true* | Jeśli prawda, autoamtycznie uruchamia `HesGallery.init()` gdy DOM zostanie załadowany
 
 ## Opcje poszczególnego bloku galerii
 Jeśli zechcesz możesz nadać danemu zestawowi zdjęć inne opcje dodając atrybuty do konterena z klasą `.hes-gallery`  
@@ -81,4 +90,4 @@ Parametr | Opis
 
 
 *Licence: [MIT](https://opensource.org/licenses/MIT)*  
-*Copyright 2018 [Artur Mędrygał](mailto:medrygal.artur@gmail.com)*
+*Copyright 2019 [Artur Mędrygał](mailto:medrygal.artur@gmail.com)*

@@ -1,5 +1,5 @@
 const gulp = require('gulp')
-const minify = require('gulp-minify')
+const uglify = require('gulp-uglify')
 const autoprefixer = require('gulp-autoprefixer')
 const clean = require('gulp-clean-css')
 const del = require('del')
@@ -39,12 +39,14 @@ gulp.task('build', ['clean'], () => {
         console.log(err.codeFrame)
         this.emit('end')
       })
-    .pipe(minify({
-      preserveComments: 'some',
-      ext:{
-        src:'.js',
-        min:'.min.js'
-    },
+    .pipe(gulp.dest(paths.dist))
+    .pipe(uglify({
+      output: {
+        comments: /^!|@preserve|@license|@cc_on/i
+      }
+    }))
+    .pipe(rename({
+      suffix: '.min'
     }))
     .pipe(gulp.dest(paths.dist))
 })
