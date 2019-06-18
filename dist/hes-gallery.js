@@ -20,6 +20,7 @@ var HesGallery = {
     animations: true,
     keyboardControl: true,
     minResolution: 0,
+    autoInit: true,
 
     // Local
     wrapAround: false,
@@ -191,7 +192,7 @@ HesGallery.prev = function () {
 };
 
 document.addEventListener('DOMContentLoaded', function () {
-  HesGallery.init();
+  if (HesGallery.options.autoInit) HesGallery.init();
 });
 
 if ('object' == (typeof exports === 'undefined' ? 'undefined' : _typeof(exports)) && 'undefined' != typeof module) module.exports = HesGallery;

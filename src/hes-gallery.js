@@ -18,6 +18,7 @@ const HesGallery = {
     animations: true,
     keyboardControl: true,
     minResolution: 0,
+    autoInit: true,
 
     // Local
     wrapAround: false,
@@ -189,7 +190,8 @@ HesGallery.prev = function() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  HesGallery.init()
+  if(HesGallery.options.autoInit)
+    HesGallery.init()
 })
 
 if ('object' == typeof exports && 'undefined' != typeof module)
