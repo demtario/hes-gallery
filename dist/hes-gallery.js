@@ -2,7 +2,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 /*!
 
-	HesGallery v1.4.9
+	HesGallery v1.4.10
 
 	Copyright (c) 2018-2019 Artur Medrygal <medrygal.artur@gmail.com>
 
@@ -69,7 +69,7 @@ HesGallery.init = function () {
     // Creates DOM Elements for gallery
     this.elements = {};
 
-    if (this.options.hostedStyles) document.head.innerHTML += "<link rel='stylesheet' href='https://api.heseya.com/hesgallery/hes-gallery.min.css'>";
+    if (this.options.hostedStyles) document.head.innerHTML += "<link rel='stylesheet' href='https://unpkg.com/hes-gallery/dist/hes-gallery.min.css'>";
 
     var gal = document.createElement('div');
     gal.id = 'hgallery';

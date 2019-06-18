@@ -1,12 +1,21 @@
 # HesGallery
 Light, dependency free script creating a responsive gallery
 
-## How to use?
+## Instalation
 Attach scripts to page
-You can use a hosted version by hooking this script or import it locally by downloading a package of files, but remember to attach a CSS style sheet and disable the auto-hooking of styles in the options (more in *Global options* section). I recommend using hosted version only for test purpose, becouse I can not give a guarantee for this hosting in a longer duration of time.
+You can use a hosted version by hooking this script or import it locally by downloading a package of files, but remember to attach a CSS style sheet and disable the auto-hooking of styles in the options (more in *Global options* section).
 ```html
-<script src="https://api.heseya.com/hesgallery/hes-gallery.min.js"></script>
+<script src="https://unpkg.com/hes-gallery/dist/hes-gallery.min.js"></script>
 ```
+
+You can also install package by **npm** or **yarn**
+```
+$ npm i hes-gallery
+
+$ yarn add hes-gallery
+```
+
+## How to use?
 
 For each container with photos that you want to use as a gallery, give the class: (Each container is a singe, independent gallery)
 ```css
@@ -82,4 +91,4 @@ Parameter | Description
 
 
 *Licence: [MIT](https://opensource.org/licenses/MIT)*  
-*Copyright 2018 [Artur Mędrygał](mailto:medrygal.artur@gmail.com)*
+*Copyright 2019 [Artur Mędrygał](mailto:medrygal.artur@gmail.com)*
