@@ -44,6 +44,7 @@ Parametr | Wartość domyślna | Opis
 `animations` | *true* | Animacje w trakcie korzystania z galerii
 `keyboardControl` | *true* | Sterowanie klawiaturą w galeriach
 `minResolution` | *0* | Minimalna szerokość ekranu dla której galeria będzie działać (w px)
+`autoInit` | *true* | Jeśli prawda, autoamtycznie uruchamia `HesGallery.init()` gdy DOM zostanie załadowany
 
 ## Opcje poszczególnego bloku galerii
 Jeśli zechcesz możesz nadać danemu zestawowi zdjęć inne opcje dodając atrybuty do konterena z klasą `.hes-gallery`  

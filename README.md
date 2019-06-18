@@ -44,6 +44,7 @@ Parameter | Default | Description
 `animations` | *true* | Using animations in gallery
 `keyboardControl` | *true* | Keyboard control in galleries
 `minResolution` | *0* | The minimum screen width for which the gallery will work (in px)
+`autoInit` | *true* | If true, automaticly run `HesGallery.init()` when DOM Content is loaded
 
 ## Options of single gallery
 If you like, you can give one set of other options by adding attributes to the `.hes-gallery` class's container 
