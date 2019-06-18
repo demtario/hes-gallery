@@ -22,11 +22,11 @@
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
   opacity: 0;
   -webkit-transition: 0.3s;
   transition: 0.3s;
@@ -83,13 +83,6 @@
   transition: transform 0.3s, -webkit-transform 0.3s;
   -webkit-transform: scale(1);
           transform: scale(1);
-
-  /*
-    border-radius: 5px;
-    padding: 5px;
-    -webkit-box-shadow: 2px 2px 4px #333;
-            box-shadow: 2px 2px 4px #333;
-*/
 }
 
 #hg-pic-cont.hg-transition {
@@ -97,8 +90,7 @@
           transform: scale(0.1);
 }
 
-#hg-pic-cont::before {
-  content: attr(data-subtext);
+#hg-subtext {
   color: #ddd;
   font-size: 14px;
   position: absolute;
@@ -107,8 +99,7 @@
   top: calc(100% + 6px);
 }
 
-#hg-pic-cont::after {
-  content: attr(data-howmany);
+#hg-howmany {
   color: #aaa;
   font-size: 14px;
   position: absolute;
@@ -125,11 +116,11 @@
   max-width: 100%;
   max-height: 90vh;
   -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+          box-sizing: border-box;
   display: block;
   cursor: default;
   -o-object-fit: contain;
-  object-fit: contain;
+     object-fit: contain;
   margin: 0;
 
   /*    border-radius: 5px;*/
@@ -137,9 +128,9 @@
 
 #hg-pic:hover {
   -webkit-transform: none;
-  transform: none;
+          transform: none;
   -webkit-box-shadow: none;
-  box-shadow: none;
+          box-shadow: none;
 }
 
 #hgallery button {

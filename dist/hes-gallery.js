@@ -91,6 +91,8 @@ HesGallery.init = function () {
 
     this.elements.pic_cont.innerHTML += "<div id='hg-prev-onpic' onclick='HesGallery.prev()'></div>";
     this.elements.pic_cont.innerHTML += "<div id='hg-next-onpic' onclick='HesGallery.next()'></div>";
+    this.elements.pic_cont.innerHTML += "<div id='hg-subtext'></div>";
+    this.elements.pic_cont.innerHTML += "<div id='hg-howmany'></div>";
 
     this.elements.b_next_onpic = document.getElementById('hg-next-onpic');
     this.elements.b_prev_onpic = document.getElementById('hg-prev-onpic');
@@ -138,9 +140,9 @@ HesGallery.show = function (g, i) {
 
   this.elements.galery.classList.add('open');
 
-  this.elements.pic_cont.dataset.subtext = this.galleries[g].subTexts[i];
+  document.getElementById('hg-subtext').innerHTML = this.galleries[g].subTexts[i];
 
-  if (this.galleries[this.currentGal].options.showImageCount && this.galleries[this.currentGal].imgPaths.length != 1) this.elements.pic_cont.dataset.howmany = this.currentImg + 1 + '/' + this.galleries[g].count;else this.elements.pic_cont.dataset.howmany = '';
+  if (this.galleries[this.currentGal].options.showImageCount && this.galleries[this.currentGal].imgPaths.length != 1) document.getElementById('hg-howmany').innerHTML = this.currentImg + 1 + '/' + this.galleries[g].count;else document.getElementById('hg-howmany').innerHTML = '';
 
   // Visibility of next/before buttons in gallery
   if (this.galleries[this.currentGal].imgPaths.length == 1) {
