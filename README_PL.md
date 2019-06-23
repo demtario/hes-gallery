@@ -1,5 +1,9 @@
+*Polska wersja dokumentacji nie będzie rozwijana od wersji 1.4.11!*
+
+
 # HesGallery
 Lekki, wolny od zależności skrypt tworzący responsywną galerię
+
 
 ## Instalacja
 Podepnij skrypty z galerią do strony  
