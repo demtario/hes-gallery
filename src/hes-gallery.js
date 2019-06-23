@@ -38,8 +38,8 @@ function HesSingleGallery(index, root) {
 
   let gallery = document.getElementsByClassName('hes-gallery')[this.index]
 
-  this.options.wrapAround = gallery.hasAttribute('data-wrap') ? this.root.options.wrapAround : gallery.dataset.wrap == 'true'
-  this.options.showImageCount = gallery.hasAttribute('data-img-count') ? this.root.options.showImageCount : gallery.dataset.imgCount == 'true'
+  this.options.wrapAround = gallery.hasAttribute('data-wrap') ? gallery.dataset.wrap == 'true' : this.root.options.wrapAround ;
+  this.options.showImageCount = gallery.hasAttribute('data-img-count') ? gallery.dataset.imgCount == 'true' : this.root.options.showImageCount;
 
   let disabledCount = 0
   gallery.querySelectorAll('img').forEach((image, i) => {
@@ -165,7 +165,8 @@ HesGallery.show = function(g, i) {
 
   if (this.galleries[this.currentGal].options.showImageCount && this.galleries[this.currentGal].imgPaths.length != 1) 
     document.getElementById('hg-howmany').innerHTML = `${this.currentImg + 1}/${this.galleries[g].count}`
-  else document.getElementById('hg-howmany').innerHTML = ''
+  else 
+    document.getElementById('hg-howmany').innerHTML = ''
 
   // Visibility of next/before buttons in gallery
   if (this.galleries[this.currentGal].imgPaths.length == 1) {

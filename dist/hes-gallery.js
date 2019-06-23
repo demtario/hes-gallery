@@ -42,8 +42,8 @@ function HesSingleGallery(index, root) {
 
   var gallery = document.getElementsByClassName('hes-gallery')[this.index];
 
-  this.options.wrapAround = gallery.hasAttribute('data-wrap') ? this.root.options.wrapAround : gallery.dataset.wrap == 'true';
-  this.options.showImageCount = gallery.hasAttribute('data-img-count') ? this.root.options.showImageCount : gallery.dataset.imgCount == 'true';
+  this.options.wrapAround = gallery.hasAttribute('data-wrap') ? gallery.dataset.wrap == 'true' : this.root.options.wrapAround;
+  this.options.showImageCount = gallery.hasAttribute('data-img-count') ? gallery.dataset.imgCount == 'true' : this.root.options.showImageCount;
 
   var disabledCount = 0;
   gallery.querySelectorAll('img').forEach(function (image, i) {
