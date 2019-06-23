@@ -7,6 +7,7 @@ You can use a hosted version by hooking this script or import it locally by down
 ```html
 <script src="https://unpkg.com/hes-gallery/dist/hes-gallery.min.js"></script>
 ```
+When using CDN global object `HesGallery` will be registred
 
 You can also install package by **npm** or **yarn**
 ```
@@ -16,7 +17,6 @@ $ yarn add hes-gallery
 ```
 
 ## How to use?
-
 For each container with photos that you want to use as a gallery, give the class: (Each container is a singe, independent gallery)
 ```css
 .hes-gallery
@@ -35,15 +35,23 @@ You can modify the options of the gallery using function described below
 ```
 
 ## Global options
-If you want, you can modify the gallery options to make it work better to you by using function `HesGallery.setOptions()`  
+If you want, you can modify the gallery options to make it work better to you by using function `HesGallery.setOptions()`, you can also change settings passing settings object to `HesGallery.init()` function.  
 Sample:
 ```javascript
 HesGallery.setOptions({
     wrapAround: true,
     disableScrolling: true
 })
-```
 
+HesGallery.init({
+    wrapAround: true,
+    disableScrolling: true
+})
+```
+**Important**  
+If you change the settings after initializing the script, not all options can be applied. To make sure that they will, use `HesGallery.init(options)` function.
+
+### Possible options:
 Parameter | Default | Description
 ---|---|---
 `wrapAround` | *false* | Create loop on gallery, you can go from last photo to first with one click
@@ -63,8 +71,8 @@ If you like, you can give one set of other options by adding attributes to the `
     <!-- Some <img> here -->
 </div>
 ```
-Available local options:  
 
+### Available local options:  
 Parameter | Global equivalent | Description
 ---|---|---
 `data-wrap` | *wrapAround* | Create loop on gallery, you can go from last photo to first with one click
