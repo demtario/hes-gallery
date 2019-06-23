@@ -2,7 +2,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 /*!
 
-	HesGallery v1.4.10
+	HesGallery v1.4.11
 
 	Copyright (c) 2018-2019 Artur Medrygal <medrygal.artur@gmail.com>
 
@@ -26,12 +26,13 @@ var HesGallery = {
     wrapAround: false,
     showImageCount: true
   },
-  version: '1.4.7'
+  version: '1.4.11'
 };
 
-function HesSingleGallery(index) {
+function HesSingleGallery(index, root) {
   var _this = this;
 
+  this.root = root;
   this.index = index;
   this.imgPaths = [];
   this.subTexts = [];
@@ -41,8 +42,8 @@ function HesSingleGallery(index) {
 
   var gallery = document.getElementsByClassName('hes-gallery')[this.index];
 
-  this.options.wrapAround = gallery.hasAttribute('data-wrap') ? HesGallery.options.wrapAround : gallery.dataset.wrap == 'true';
-  this.options.showImageCount = gallery.hasAttribute('data-img-count') ? HesGallery.options.showImageCount : gallery.dataset.imgCount == 'true';
+  this.options.wrapAround = gallery.hasAttribute('data-wrap') ? this.root.options.wrapAround : gallery.dataset.wrap == 'true';
+  this.options.showImageCount = gallery.hasAttribute('data-img-count') ? this.root.options.showImageCount : gallery.dataset.imgCount == 'true';
 
   var disabledCount = 0;
   gallery.querySelectorAll('img').forEach(function (image, i) {
@@ -51,54 +52,30 @@ function HesSingleGallery(index) {
       _this.subTexts.push(image.dataset.subtext || '');
       _this.altTexts.push(image.alt || '');
 
-      image.setAttribute('onclick', 'HesGallery.show(' + _this.index + ',' + (i - disabledCount) + ')');
+      // image.setAttribute('onclick', `HesGallery.show(${this.index},${i - disabledCount})`)
+      image.onclick = function () {
+        _this.root.show(_this.index, i - disabledCount);
+      };
     }
   });
 
   this.count = this.imgPaths.length;
 }
 
-HesGallery.setOptions = function (values) {
+HesGallery.setOptions = function () {
+  var values = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
   for (var key in values) {
     this.options[key] = values[key];
   }
 };
 
-HesGallery.init = function () {
-  if (!this.executed) {
-    // Creates DOM Elements for gallery
-    this.elements = {};
+HesGallery.init = function (options) {
+  var _this2 = this;
 
-    if (this.options.hostedStyles) document.head.innerHTML += "<link rel='stylesheet' href='https://unpkg.com/hes-gallery/dist/hes-gallery.min.css'>";
+  this.setOptions(options);
 
-    var gal = document.createElement('div');
-    gal.id = 'hgallery';
-    gal.setAttribute('style', 'visibility:hidden;');
-    document.body.appendChild(gal);
-
-    this.elements.galery = document.getElementById('hgallery'); // Whole gallery
-
-    this.elements.galery.innerHTML += "<div id='hg-bg' onclick='HesGallery.hide()'></div>";
-    this.elements.galery.innerHTML += "<div id='hg-pic-cont'><img id='hg-pic' /></div>";
-
-    this.elements.galery.innerHTML += "<button id='hg-prev' onclick='HesGallery.prev()'></button>";
-    this.elements.galery.innerHTML += "<button id='hg-next' onclick='HesGallery.next()'></button>";
-
-    this.elements.b_prev = document.getElementById('hg-prev');
-    this.elements.b_next = document.getElementById('hg-next');
-
-    this.elements.pic_cont = document.getElementById('hg-pic-cont');
-
-    this.elements.pic_cont.innerHTML += "<div id='hg-prev-onpic' onclick='HesGallery.prev()'></div>";
-    this.elements.pic_cont.innerHTML += "<div id='hg-next-onpic' onclick='HesGallery.next()'></div>";
-    this.elements.pic_cont.innerHTML += "<div id='hg-subtext'></div>";
-    this.elements.pic_cont.innerHTML += "<div id='hg-howmany'></div>";
-
-    this.elements.b_next_onpic = document.getElementById('hg-next-onpic');
-    this.elements.b_prev_onpic = document.getElementById('hg-prev-onpic');
-
-    this.executed = true;
-  }
+  if (!this.executed) this.createDOM();
 
   if (this.options.animations) this.elements.pic_cont.classList = 'hg-transition';else this.elements.pic_cont.classList = '';
 
@@ -108,20 +85,63 @@ HesGallery.init = function () {
 
   for (var i = 0; i < this.count; i++) {
     // Creates a galleries
-    this.galleries[i] = new HesSingleGallery(i);
+    this.galleries[i] = new HesSingleGallery(i, this);
   }
 
-  if (this.options.keyboardControl) {
+  // KeyDown event listener
+  if (this.options.keyboardControl && !this.keydownEventListener) {
     addEventListener('keydown', function (_ref) {
       var keyCode = _ref.keyCode;
 
-      if (keyCode == 39 && HesGallery.open) HesGallery.next();
-      if (keyCode == 37 && HesGallery.open) HesGallery.prev();
-      if (keyCode == 27 && HesGallery.open) HesGallery.hide();
+      if (keyCode == 39 && _this2.open && _this2.options.keyboardControl) _this2.next();
+      if (keyCode == 37 && _this2.open && _this2.options.keyboardControl) _this2.prev();
+      if (keyCode == 27 && _this2.open && _this2.options.keyboardControl) _this2.hide();
     });
+    this.keydownEventListener = true;
   }
 
   return 'HesGallery initiated!';
+};
+
+HesGallery.createDOM = function () {
+  var _this3 = this;
+
+  // Creates DOM Elements for gallery
+  this.elements = {};
+
+  if (this.options.hostedStyles) document.head.innerHTML += "<link rel='stylesheet' href='https://unpkg.com/hes-gallery/dist/hes-gallery.min.css'>";
+
+  var gal = document.createElement('div');
+  gal.id = 'hgallery';
+  gal.setAttribute('style', 'visibility:hidden;');
+
+  this.elements.galery = gal; // Whole gallery
+
+  this.elements.galery.innerHTML += '\n    <div id=\'hg-bg\'></div>\n    <div id=\'hg-pic-cont\'>\n      <img id=\'hg-pic\' />\n      <div id=\'hg-prev-onpic\'></div>\n      <div id=\'hg-next-onpic\'></div>\n      <div id=\'hg-subtext\'></div>\n      <div id=\'hg-howmany\'></div>\n    </div>\n    <button id=\'hg-prev\'></button>\n    <button id=\'hg-next\'></button>\n  ';
+
+  document.body.appendChild(gal);
+
+  this.elements.b_prev = document.getElementById('hg-prev');
+  this.elements.b_next = document.getElementById('hg-next');
+
+  this.elements.pic_cont = document.getElementById('hg-pic-cont');
+
+  this.elements.b_next_onpic = document.getElementById('hg-next-onpic');
+  this.elements.b_prev_onpic = document.getElementById('hg-prev-onpic');
+
+  this.elements.b_prev.onclick = this.elements.b_prev_onpic.onclick = function () {
+    _this3.prev();
+  };
+
+  this.elements.b_next.onclick = this.elements.b_next_onpic.onclick = function () {
+    _this3.next();
+  };
+
+  document.getElementById('hg-bg').onclick = function () {
+    _this3.hide();
+  };
+
+  this.executed = true;
 };
 
 HesGallery.show = function (g, i) {

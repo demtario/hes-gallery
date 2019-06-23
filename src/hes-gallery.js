@@ -1,6 +1,6 @@
 /*!
 
-	HesGallery v1.4.10
+	HesGallery v1.4.11
 
 	Copyright (c) 2018-2019 Artur Medrygal <medrygal.artur@gmail.com>
 
@@ -24,10 +24,11 @@ const HesGallery = {
     wrapAround: false,
     showImageCount: true
   },
-  version: '1.4.7'
+  version: '1.4.11'
 }
 
-function HesSingleGallery(index) {
+function HesSingleGallery(index, root) {
+  this.root = root
   this.index = index
   this.imgPaths = []
   this.subTexts = []
@@ -37,8 +38,8 @@ function HesSingleGallery(index) {
 
   let gallery = document.getElementsByClassName('hes-gallery')[this.index]
 
-  this.options.wrapAround = gallery.hasAttribute('data-wrap') ? HesGallery.options.wrapAround : gallery.dataset.wrap == 'true'
-  this.options.showImageCount = gallery.hasAttribute('data-img-count') ? HesGallery.options.showImageCount : gallery.dataset.imgCount == 'true'
+  this.options.wrapAround = gallery.hasAttribute('data-wrap') ? this.root.options.wrapAround : gallery.dataset.wrap == 'true'
+  this.options.showImageCount = gallery.hasAttribute('data-img-count') ? this.root.options.showImageCount : gallery.dataset.imgCount == 'true'
 
   let disabledCount = 0
   gallery.querySelectorAll('img').forEach((image, i) => {
@@ -49,52 +50,25 @@ function HesSingleGallery(index) {
       this.subTexts.push(image.dataset.subtext || '')
       this.altTexts.push(image.alt || '')
 
-      image.setAttribute('onclick', `HesGallery.show(${this.index},${i - disabledCount})`)
+      // image.setAttribute('onclick', `HesGallery.show(${this.index},${i - disabledCount})`)
+      image.onclick = () => {
+        this.root.show(this.index, i - disabledCount)
+      }
     }
   })
 
   this.count = this.imgPaths.length
 }
 
-HesGallery.setOptions = function(values) {
+HesGallery.setOptions = function(values = {}) {
   for (let key in values) this.options[key] = values[key]
 }
 
-HesGallery.init = function() {
-  if (!this.executed) {
-    // Creates DOM Elements for gallery
-    this.elements = {}
+HesGallery.init = function(options) {
+  this.setOptions(options)
 
-    if (this.options.hostedStyles) document.head.innerHTML += "<link rel='stylesheet' href='https://unpkg.com/hes-gallery/dist/hes-gallery.min.css'>"
-
-    const gal = document.createElement('div')
-    gal.id = 'hgallery'
-    gal.setAttribute('style', 'visibility:hidden;')
-    document.body.appendChild(gal)
-
-    this.elements.galery = document.getElementById('hgallery') // Whole gallery
-
-    this.elements.galery.innerHTML += "<div id='hg-bg' onclick='HesGallery.hide()'></div>"
-    this.elements.galery.innerHTML += "<div id='hg-pic-cont'><img id='hg-pic' /></div>"
-
-    this.elements.galery.innerHTML += "<button id='hg-prev' onclick='HesGallery.prev()'></button>"
-    this.elements.galery.innerHTML += "<button id='hg-next' onclick='HesGallery.next()'></button>"
-
-    this.elements.b_prev = document.getElementById('hg-prev')
-    this.elements.b_next = document.getElementById('hg-next')
-
-    this.elements.pic_cont = document.getElementById('hg-pic-cont')
-
-    this.elements.pic_cont.innerHTML += "<div id='hg-prev-onpic' onclick='HesGallery.prev()'></div>"
-    this.elements.pic_cont.innerHTML += "<div id='hg-next-onpic' onclick='HesGallery.next()'></div>"
-    this.elements.pic_cont.innerHTML += "<div id='hg-subtext'></div>"
-    this.elements.pic_cont.innerHTML += "<div id='hg-howmany'></div>"
-
-    this.elements.b_next_onpic = document.getElementById('hg-next-onpic')
-    this.elements.b_prev_onpic = document.getElementById('hg-prev-onpic')
-
-    this.executed = true
-  }
+  if (!this.executed) 
+    this.createDOM()
 
   if (this.options.animations) this.elements.pic_cont.classList = 'hg-transition'
   else this.elements.pic_cont.classList = ''
@@ -105,18 +79,70 @@ HesGallery.init = function() {
 
   for (let i = 0; i < this.count; i++) {
     // Creates a galleries
-    this.galleries[i] = new HesSingleGallery(i)
+    this.galleries[i] = new HesSingleGallery(i, this)
   }
 
-  if (this.options.keyboardControl) {
+  // KeyDown event listener
+  if (this.options.keyboardControl && !this.keydownEventListener) {
     addEventListener('keydown', ({ keyCode }) => {
-      if (keyCode == 39 && HesGallery.open) HesGallery.next()
-      if (keyCode == 37 && HesGallery.open) HesGallery.prev()
-      if (keyCode == 27 && HesGallery.open) HesGallery.hide()
+      if (keyCode == 39 && this.open && this.options.keyboardControl) this.next()
+      if (keyCode == 37 && this.open && this.options.keyboardControl) this.prev()
+      if (keyCode == 27 && this.open && this.options.keyboardControl) this.hide()
     })
+    this.keydownEventListener = true
   }
 
   return 'HesGallery initiated!'
+}
+
+HesGallery.createDOM = function() {
+  // Creates DOM Elements for gallery
+  this.elements = {}
+
+  if (this.options.hostedStyles) document.head.innerHTML += "<link rel='stylesheet' href='https://unpkg.com/hes-gallery/dist/hes-gallery.min.css'>"
+
+  const gal = document.createElement('div')
+  gal.id = 'hgallery'
+  gal.setAttribute('style', 'visibility:hidden;')
+
+  this.elements.galery = gal // Whole gallery
+
+  this.elements.galery.innerHTML += `
+    <div id='hg-bg'></div>
+    <div id='hg-pic-cont'>
+      <img id='hg-pic' />
+      <div id='hg-prev-onpic'></div>
+      <div id='hg-next-onpic'></div>
+      <div id='hg-subtext'></div>
+      <div id='hg-howmany'></div>
+    </div>
+    <button id='hg-prev'></button>
+    <button id='hg-next'></button>
+  `
+
+  document.body.appendChild(gal)
+
+  this.elements.b_prev = document.getElementById('hg-prev')
+  this.elements.b_next = document.getElementById('hg-next')
+
+  this.elements.pic_cont = document.getElementById('hg-pic-cont')
+
+  this.elements.b_next_onpic = document.getElementById('hg-next-onpic')
+  this.elements.b_prev_onpic = document.getElementById('hg-prev-onpic')
+
+  this.elements.b_prev.onclick = this.elements.b_prev_onpic.onclick = () => {
+    this.prev()
+  }
+
+  this.elements.b_next.onclick = this.elements.b_next_onpic.onclick = () => {
+    this.next()
+  }
+
+  document.getElementById('hg-bg').onclick = () => {
+    this.hide()
+  }
+
+  this.executed = true
 }
 
 HesGallery.show = function(g, i) {
