@@ -1,6 +1,6 @@
 /*!
 
-	HesGallery v1.4.11
+	HesGallery v1.4.12
 
 	Copyright (c) 2018-2019 Artur Medrygal <medrygal.artur@gmail.com>
 
@@ -22,9 +22,12 @@ const HesGallery = {
 
     // Local
     wrapAround: false,
-    showImageCount: true
+    showImageCount: true,
+    
+    // set to true if images are nested in links
+    linkNested: false
   },
-  version: '1.4.11'
+  version: '1.4.12'
 }
 
 function HesSingleGallery(index, root) {
@@ -37,6 +40,9 @@ function HesSingleGallery(index, root) {
   this.options = {}
 
   let gallery = document.getElementsByClassName('hes-gallery')[this.index]
+  
+  if (this.root.options.linkNested)
+    this.root.replaceImages(gallery)
 
   this.options.wrapAround = gallery.hasAttribute('data-wrap') ? gallery.dataset.wrap == 'true' : this.root.options.wrapAround ;
   this.options.showImageCount = gallery.hasAttribute('data-img-count') ? gallery.dataset.imgCount == 'true' : this.root.options.showImageCount;
@@ -93,6 +99,14 @@ HesGallery.init = function(options) {
   }
 
   return 'HesGallery initiated!'
+}
+
+HesGallery.replaceImages = function(gallery) {
+  gallery.querySelectorAll('a.hg-image').forEach(function(imageLink) {
+    image = imageLink.getElementsByTagName('img')[0]
+    image.setAttribute('data-fullsize', imageLink.href.trim())
+    imageLink.replaceWith(image)
+  })
 }
 
 HesGallery.createDOM = function() {
