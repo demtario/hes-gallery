@@ -62,6 +62,7 @@ Parameter | Default | Description
 `keyboardControl` | *true* | Keyboard control in galleries
 `minResolution` | *0* | The minimum screen width for which the gallery will work (in px)
 `autoInit` | *true* | If true, automaticly run `HesGallery.init()` when DOM Content is loaded
+`linkNested` | *false* | If true, you can use images nested in links
 
 ## Options of single gallery
 If you like, you can give one set of other options by adding attributes to the `.hes-gallery` class's container 
@@ -97,6 +98,18 @@ Parameter | Description
 `data-disabled` | If set will cause that the image will not be included in the gallery
 `data-fullsize` | If we want to use thumbnails, we give the thumbnail path to the `src` tag and a path to the full version of graphics to the` data-fullsize` tag
 
+## Images nested in Links
+To support browsers without JavaScript, an option is to statically link the "large" images like so:
+```html
+<div class="hes-gallery">
+    <a href="image1-large.jpg" class="hg-image">
+        <img src="image1-small.jpg" alt="image1" data-subtext="Subtext" />
+    </a>
+    ...
+</div>
+```
+In that case, users can still open an expanded view but if JS is enabled, they get the HesGallery.
+To enable this feature, set `linkNested` to true in the options during initialisation.
 
 *Licence: [MIT](https://opensource.org/licenses/MIT)*  
 *Copyright 2019 [Artur Mędrygał](mailto:medrygal.artur@gmail.com)*
