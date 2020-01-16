@@ -35,7 +35,7 @@ You can modify the options of the gallery using function described below
 ```
 
 ## Global options
-If you want, you can modify the gallery options to make it work better to you by using function `HesGallery.setOptions()`, you can also change settings passing settings object to `HesGallery.init()` function.  
+If you want, you can modify the gallery options to make it work better to you by using function `HesGallery.setOptions()`, you can also change settings passing settings object to `HesGallery.init()` function.
 Sample:
 ```javascript
 HesGallery.setOptions({
@@ -48,7 +48,7 @@ HesGallery.init({
     disableScrolling: true
 })
 ```
-**Important**  
+**Important**
 If you change the settings after initializing the script, not all options can be applied. To make sure that they will, use `HesGallery.init(options)` function.
 
 ### Possible options:
@@ -65,7 +65,7 @@ Parameter | Default | Description
 `linkNested` | *false* | If true, you can use images nested in links
 
 ## Options of single gallery
-If you like, you can give one set of other options by adding attributes to the `.hes-gallery` class's container 
+If you like, you can give one set of other options by adding attributes to the `.hes-gallery` class's container
 **Attributes accept only *true* or *false* value, in any other case the gallery will adopt values set by `HesGallery.setOptions ()` or default!**
 ```html
 <div class="hes-gallery" data-wrap="true" data-img-count='false' >
@@ -73,7 +73,7 @@ If you like, you can give one set of other options by adding attributes to the `
 </div>
 ```
 
-### Available local options:  
+### Available local options:
 Parameter | Global equivalent | Description
 ---|---|---
 `data-wrap` | *wrapAround* | Create loop on gallery, you can go from last photo to first with one click
@@ -111,5 +111,17 @@ To support browsers without JavaScript, an option is to statically link the "lar
 In that case, users can still open an expanded view but if JS is enabled, they get the HesGallery.
 To enable this feature, set `linkNested` to true in the options during initialisation.
 
-*Licence: [MIT](https://opensource.org/licenses/MIT)*  
+## Contribution
+Feel free to contribute any changes/features for future versions of HesGallery. Please work, and create Pull Pequests on `develop` branch.
+
+### How to run?
+1. Install dependecies with `npm i` command
+2. By `npm run dev` you can run development server with gulp & browsersync to faster the development of your feature
+3. You can also use a `npm run build` to only build a script by babel and minimalize code
+4. It would be also greate if you can provide a examples of your feature in readme and in `/demo` folder
+4. When you finish, push your changes and create a Pull Request
+
+Thanks for your help!
+
+*Licence: [MIT](https://opensource.org/licenses/MIT)*
 *Copyright 2019 [Artur Mędrygał](mailto:medrygal.artur@gmail.com)*
