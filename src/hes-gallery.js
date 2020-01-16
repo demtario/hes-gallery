@@ -9,7 +9,7 @@
 */
 
 const HesGallery = {
-  version: '1.4.11',
+  version: '1.4.12',
   options: {
     // Global
     disableScrolling: false,
@@ -21,7 +21,10 @@ const HesGallery = {
 
     // Local
     wrapAround: false,
-    showImageCount: true
+    showImageCount: true,
+
+    // set to true if images are nested in links
+    linkNested: false
   },
 
   setOptions(values = {}) {
@@ -56,6 +59,14 @@ const HesGallery = {
     }
 
     return 'HesGallery initiated!'
+  },
+
+  replaceImages(gallery) {
+    gallery.querySelectorAll('a.hg-image').forEach((imageLink) => {
+      image = imageLink.getElementsByTagName('img')[0]
+      image.setAttribute('data-fullsize', imageLink.href.trim())
+      imageLink.replaceWith(image)
+    })
   },
 
   createDOM() {
@@ -191,6 +202,9 @@ const HesGallery = {
       this.options = {}
 
       let gallery = document.getElementsByClassName('hes-gallery')[this.index]
+
+      if (this.root.options.linkNested)
+        this.root.replaceImages(gallery)
 
       this.options.wrapAround = gallery.hasAttribute('data-wrap') ? gallery.dataset.wrap == 'true' : this.root.options.wrapAround
       this.options.showImageCount = gallery.hasAttribute('data-img-count') ? gallery.dataset.imgCount == 'true' : this.root.options.showImageCount
