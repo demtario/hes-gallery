@@ -48,7 +48,13 @@ function HesSingleGallery(index, root) {
   var disabledCount = 0;
   gallery.querySelectorAll('img').forEach(function (image, i) {
     if (image.hasAttribute('data-disabled')) disabledCount++;else {
-      if (image.hasAttribute('data-fullsize')) _this.imgPaths.push(image.dataset.fullsize || '');else _this.imgPaths.push(image.src || '');
+      if (image.hasAttribute('data-fullsize')) {
+              _this.imgPaths.push(image.dataset.fullsize || '');
+            } else if (image.hasAttribute('data-src')) {
+              _this.imgPaths.push(image.dataset.src || '');
+            } else {
+              _this.imgPaths.push(image.src || '');
+            }
       _this.subTexts.push(image.dataset.subtext || '');
       _this.altTexts.push(image.alt || '');
 
