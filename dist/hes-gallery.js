@@ -117,7 +117,7 @@ HesGallery.createDOM = function () {
 
   this.elements.galery = gal; // Whole gallery
 
-  this.elements.galery.innerHTML += '\n    <div id=\'hg-bg\'></div>\n    <div id=\'hg-pic-cont\'>\n      <img id=\'hg-pic\' />\n      <div id=\'hg-prev-onpic\'></div>\n      <div id=\'hg-next-onpic\'></div>\n      <div id=\'hg-subtext\'></div>\n      <div id=\'hg-howmany\'></div>\n    </div>\n    <button id=\'hg-prev\'></button>\n    <button id=\'hg-next\'></button>\n  ';
+  this.elements.galery.innerHTML += '\n    <div id=\'hg-bg\'></div>\n    <div id=\'hg-pic-cont\'>\n      <img id=\'hg-pic\' alt=\'Default alternative text\' />\n      <div id=\'hg-prev-onpic\'></div>\n      <div id=\'hg-next-onpic\'></div>\n      <div id=\'hg-subtext\'></div>\n      <div id=\'hg-howmany\'></div>\n    </div>\n    <a id=\'hg-prev\'></a>\n    <a id=\'hg-next\'></a>\n  ';
 
   document.body.appendChild(gal);
 

@@ -133,7 +133,7 @@
           box-shadow: none;
 }
 
-#hgallery button {
+#hgallery a {
   position: absolute;
   display: block;
   margin: auto 0;
@@ -152,30 +152,30 @@
   visibility: hidden;
 }
 
-#hgallery.open button {
+#hgallery.open a {
   visibility: visible;
   opacity: 0.7;
 }
 
-#hgallery button:hover {
+#hgallery a:hover {
   opacity: 1;
 }
 
-#hgallery button#hg-prev {
+#hgallery a#hg-prev {
   left: 10px;
   -webkit-transform: rotate(180deg);
   transform: rotate(180deg);
 }
 
-#hgallery button#hg-prev:active {
+#hgallery a#hg-prev:active {
   left: 7px;
 }
 
-#hgallery button#hg-next {
+#hgallery a#hg-next {
   right: 10px;
 }
 
-#hgallery button#hg-next:active {
+#hgallery a#hg-next:active {
   right: 7px;
 }
 
