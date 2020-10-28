@@ -48,7 +48,13 @@ function HesSingleGallery(index, root) {
   var disabledCount = 0;
   gallery.querySelectorAll('img').forEach(function (image, i) {
     if (image.hasAttribute('data-disabled')) disabledCount++;else {
-      if (image.hasAttribute('data-fullsize')) _this.imgPaths.push(image.dataset.fullsize || '');else _this.imgPaths.push(image.src || '');
+      if (image.hasAttribute('data-fullsize')) {
+              _this.imgPaths.push(image.dataset.fullsize || '');
+            } else if (image.hasAttribute('data-src')) {
+              _this.imgPaths.push(image.dataset.src || '');
+            } else {
+              _this.imgPaths.push(image.src || '');
+            }
       _this.subTexts.push(image.dataset.subtext || '');
       _this.altTexts.push(image.alt || '');
 
@@ -117,7 +123,7 @@ HesGallery.createDOM = function () {
 
   this.elements.galery = gal; // Whole gallery
 
-  this.elements.galery.innerHTML += '\n    <div id=\'hg-bg\'></div>\n    <div id=\'hg-pic-cont\'>\n      <img id=\'hg-pic\' />\n      <div id=\'hg-prev-onpic\'></div>\n      <div id=\'hg-next-onpic\'></div>\n      <div id=\'hg-subtext\'></div>\n      <div id=\'hg-howmany\'></div>\n    </div>\n    <button id=\'hg-prev\'></button>\n    <button id=\'hg-next\'></button>\n  ';
+  this.elements.galery.innerHTML += '\n    <div id=\'hg-bg\'></div>\n    <div id=\'hg-pic-cont\'>\n      <img id=\'hg-pic\' alt=\'Default alternative text\' />\n      <div id=\'hg-prev-onpic\'></div>\n      <div id=\'hg-next-onpic\'></div>\n      <div id=\'hg-subtext\'></div>\n      <div id=\'hg-howmany\'></div>\n    </div>\n    <a id=\'hg-prev\'></a>\n    <a id=\'hg-next\'></a>\n  ';
 
   document.body.appendChild(gal);
 
