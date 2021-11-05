@@ -7,6 +7,9 @@
     "build": "gulp build",
     "dev": "gulp watch"
   },
+  "engines": {
+    "node": "11.x"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/demtario/hes-gallery.git"
