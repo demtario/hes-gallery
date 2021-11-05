@@ -24,7 +24,7 @@ const HesGallery = {
     showImageCount: true,
 
     // set to true if images are nested in links
-    linkNested: false
+    linkNested: false,
   },
 
   setOptions(values = {}) {
@@ -73,7 +73,9 @@ const HesGallery = {
     // Creates DOM Elements for gallery
     this.elements = {}
 
-    if (this.options.hostedStyles) document.head.innerHTML += "<link rel='stylesheet' href='https://unpkg.com/hes-gallery/dist/hes-gallery.min.css'>"
+    if (this.options.hostedStyles)
+      document.head.innerHTML +=
+        "<link rel='stylesheet' href='https://unpkg.com/hes-gallery/dist/hes-gallery.min.css'>"
 
     const gallery = document.createElement('div')
     gallery.id = 'hgallery'
@@ -90,8 +92,12 @@ const HesGallery = {
         <div id='hg-subtext'></div>
         <div id='hg-howmany'></div>
       </div>
-      <button id='hg-prev'></button>
-      <button id='hg-next'></button>
+      <button id='hg-prev' title="Previous" aria-label="Next">
+        <img src="data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjZmZmZmZmIiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCiAgICA8cGF0aCBkPSJNOC41OSAxNi4zNGw0LjU4LTQuNTktNC41OC00LjU5TDEwIDUuNzVsNiA2LTYgNnoiLz4NCiAgICA8cGF0aCBkPSJNMC0uMjVoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz4NCjwvc3ZnPg==" alt="Previous" />
+      </button>
+      <button id='hg-next' title="Next" aria-label="Previous">
+        <img src="data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjZmZmZmZmIiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCiAgICA8cGF0aCBkPSJNOC41OSAxNi4zNGw0LjU4LTQuNTktNC41OC00LjU5TDEwIDUuNzVsNiA2LTYgNnoiLz4NCiAgICA8cGF0aCBkPSJNMC0uMjVoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz4NCjwvc3ZnPg==" alt="Next" />
+      </button>
     `
 
     document.body.appendChild(gallery)
@@ -127,7 +133,8 @@ const HesGallery = {
 
     this.open = true
 
-    if (this.options.animations || this.elements.pic_cont.classList == 'hg-transition') this.elements.pic_cont.classList.remove('hg-transition')
+    if (this.options.animations || this.elements.pic_cont.classList == 'hg-transition')
+      this.elements.pic_cont.classList.remove('hg-transition')
 
     document.getElementById('hg-pic').setAttribute('src', this.galleries[g].imgPaths[i]) // Sets the path to image
 
@@ -137,7 +144,13 @@ const HesGallery = {
 
     document.getElementById('hg-subtext').innerHTML = this.galleries[g].subTexts[i]
 
-    if (this.galleries[this.currentGal].options.showImageCount && this.galleries[this.currentGal].imgPaths.length != 1) document.getElementById('hg-howmany').innerHTML = `${this.currentImg + 1}/${this.galleries[g].count}`
+    if (
+      this.galleries[this.currentGal].options.showImageCount &&
+      this.galleries[this.currentGal].imgPaths.length != 1
+    )
+      document.getElementById('hg-howmany').innerHTML = `${this.currentImg + 1}/${
+        this.galleries[g].count
+      }`
     else document.getElementById('hg-howmany').innerHTML = ''
 
     // Visibility of next/before buttons in gallery
@@ -154,7 +167,10 @@ const HesGallery = {
 
       this.elements.b_next.classList = ''
       this.elements.b_next_onpic.classList = ''
-    } else if (this.currentImg + 1 == this.galleries[this.currentGal].count && !this.galleries[this.currentGal].options.wrapAround) {
+    } else if (
+      this.currentImg + 1 == this.galleries[this.currentGal].count &&
+      !this.galleries[this.currentGal].options.wrapAround
+    ) {
       // Last photo
       this.elements.b_next.classList = 'hg-unvisible'
       this.elements.b_next_onpic.classList = 'hg-unvisible'
@@ -182,12 +198,18 @@ const HesGallery = {
   },
 
   next() {
-    if (this.galleries[this.currentGal].options.wrapAround && this.currentImg == this.galleries[this.currentGal].count - 1) this.show(this.currentGal, 0)
-    else if (this.currentImg + 1 < this.galleries[this.currentGal].count) this.show(this.currentGal, this.currentImg + 1)
+    if (
+      this.galleries[this.currentGal].options.wrapAround &&
+      this.currentImg == this.galleries[this.currentGal].count - 1
+    )
+      this.show(this.currentGal, 0)
+    else if (this.currentImg + 1 < this.galleries[this.currentGal].count)
+      this.show(this.currentGal, this.currentImg + 1)
   },
 
   prev() {
-    if (this.galleries[this.currentGal].options.wrapAround && this.currentImg == 0) this.show(this.currentGal, this.galleries[this.currentGal].count - 1)
+    if (this.galleries[this.currentGal].options.wrapAround && this.currentImg == 0)
+      this.show(this.currentGal, this.galleries[this.currentGal].count - 1)
     else if (this.currentImg + 1 > 1) this.show(this.currentGal, this.currentImg - 1)
   },
 
@@ -203,11 +225,14 @@ const HesGallery = {
 
       let gallery = document.getElementsByClassName('hes-gallery')[this.index]
 
-      if (this.root.options.linkNested)
-        this.root.replaceImages(gallery)
+      if (this.root.options.linkNested) this.root.replaceImages(gallery)
 
-      this.options.wrapAround = gallery.hasAttribute('data-wrap') ? gallery.dataset.wrap == 'true' : this.root.options.wrapAround
-      this.options.showImageCount = gallery.hasAttribute('data-img-count') ? gallery.dataset.imgCount == 'true' : this.root.options.showImageCount
+      this.options.wrapAround = gallery.hasAttribute('data-wrap')
+        ? gallery.dataset.wrap == 'true'
+        : this.root.options.wrapAround
+      this.options.showImageCount = gallery.hasAttribute('data-img-count')
+        ? gallery.dataset.imgCount == 'true'
+        : this.root.options.showImageCount
 
       let disabledCount = 0
       gallery.querySelectorAll('img').forEach((image, i) => {
@@ -226,7 +251,7 @@ const HesGallery = {
 
       this.count = this.imgPaths.length
     }
-  }
+  },
 }
 
 document.addEventListener('DOMContentLoaded', () => {
