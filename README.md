@@ -1,4 +1,8 @@
 # HesGallery
+![licence](https://img.shields.io/npm/l/hes-gallery)
+[![version](https://img.shields.io/npm/v/hes-gallery)](https://www.npmjs.com/package/hes-gallery)
+[![downloads](https://img.shields.io/npm/dw/hes-gallery)](https://www.npmjs.com/package/hes-gallery)
+
 Light, dependency free script creating a responsive gallery
 
 ## Instalation
