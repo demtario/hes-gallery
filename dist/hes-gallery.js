@@ -13,7 +13,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 */
 
 var HesGallery = {
-  version: '1.4.11',
+  version: '1.4.12',
   options: {
     // Global
     disableScrolling: false,
@@ -25,7 +25,10 @@ var HesGallery = {
 
     // Local
     wrapAround: false,
-    showImageCount: true
+    showImageCount: true,
+
+    // set to true if images are nested in links
+    linkNested: false
   },
 
   setOptions: function setOptions() {
@@ -67,6 +70,13 @@ var HesGallery = {
 
     return 'HesGallery initiated!';
   },
+  replaceImages: function replaceImages(gallery) {
+    gallery.querySelectorAll('a.hg-image').forEach(function (imageLink) {
+      image = imageLink.getElementsByTagName('img')[0];
+      image.setAttribute('data-fullsize', imageLink.href.trim());
+      imageLink.replaceWith(image);
+    });
+  },
   createDOM: function createDOM() {
     var _this2 = this;
 
@@ -81,7 +91,7 @@ var HesGallery = {
 
     this.elements.gallery = gallery; // Whole gallery
 
-    this.elements.gallery.innerHTML += '\n      <div id=\'hg-bg\'></div>\n      <div id=\'hg-pic-cont\'>\n        <img id=\'hg-pic\' />\n        <div id=\'hg-prev-onpic\'></div>\n        <div id=\'hg-next-onpic\'></div>\n        <div id=\'hg-subtext\'></div>\n        <div id=\'hg-howmany\'></div>\n      </div>\n      <button id=\'hg-prev\'></button>\n      <button id=\'hg-next\'></button>\n    ';
+    this.elements.gallery.innerHTML += '\n      <div id=\'hg-bg\'></div>\n      <div id=\'hg-pic-cont\'>\n        <img id=\'hg-pic\' />\n        <div id=\'hg-prev-onpic\'></div>\n        <div id=\'hg-next-onpic\'></div>\n        <div id=\'hg-subtext\'></div>\n        <div id=\'hg-howmany\'></div>\n      </div>\n      <button id=\'hg-prev\' title="Previous" aria-label="Next">\n        <img src="data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjZmZmZmZmIiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCiAgICA8cGF0aCBkPSJNOC41OSAxNi4zNGw0LjU4LTQuNTktNC41OC00LjU5TDEwIDUuNzVsNiA2LTYgNnoiLz4NCiAgICA8cGF0aCBkPSJNMC0uMjVoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz4NCjwvc3ZnPg==" alt="Previous" />\n      </button>\n      <button id=\'hg-next\' title="Next" aria-label="Previous">\n        <img src="data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjZmZmZmZmIiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCiAgICA8cGF0aCBkPSJNOC41OSAxNi4zNGw0LjU4LTQuNTktNC41OC00LjU5TDEwIDUuNzVsNiA2LTYgNnoiLz4NCiAgICA8cGF0aCBkPSJNMC0uMjVoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz4NCjwvc3ZnPg==" alt="Next" />\n      </button>\n    ';
 
     document.body.appendChild(gallery);
 
@@ -188,6 +198,8 @@ var HesGallery = {
     this.options = {};
 
     var gallery = document.getElementsByClassName('hes-gallery')[this.index];
+
+    if (this.root.options.linkNested) this.root.replaceImages(gallery);
 
     this.options.wrapAround = gallery.hasAttribute('data-wrap') ? gallery.dataset.wrap == 'true' : this.root.options.wrapAround;
     this.options.showImageCount = gallery.hasAttribute('data-img-count') ? gallery.dataset.imgCount == 'true' : this.root.options.showImageCount;
