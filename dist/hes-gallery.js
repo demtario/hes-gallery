@@ -207,7 +207,8 @@ var HesGallery = {
     var disabledCount = 0;
     gallery.querySelectorAll('img').forEach(function (image, i) {
       if (image.hasAttribute('data-disabled')) disabledCount++;else {
-        if (image.hasAttribute('data-fullsize')) _this3.imgPaths.push(image.dataset.fullsize || '');else _this3.imgPaths.push(image.src || '');
+        var imagePath = image.dataset.fullsize || image.dataset.src || image.src;
+        if (imagePath) _this3.imgPaths.push(imagePath);
         _this3.subTexts.push(image.dataset.subtext || '');
         _this3.altTexts.push(image.alt || '');
 

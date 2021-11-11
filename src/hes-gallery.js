@@ -238,8 +238,8 @@ const HesGallery = {
       gallery.querySelectorAll('img').forEach((image, i) => {
         if (image.hasAttribute('data-disabled')) disabledCount++
         else {
-          if (image.hasAttribute('data-fullsize')) this.imgPaths.push(image.dataset.fullsize || '')
-          else this.imgPaths.push(image.src || '')
+          const imagePath = image.dataset.fullsize || image.dataset.src || image.src
+          if (imagePath) this.imgPaths.push(imagePath)
           this.subTexts.push(image.dataset.subtext || '')
           this.altTexts.push(image.alt || '')
 
