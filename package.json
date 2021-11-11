@@ -1,6 +1,6 @@
 {
   "name": "hes-gallery",
-  "version": "1.4.13",
+  "version": "1.5.0",
   "description": "Light, dependency free script creating a responsive gallery",
   "main": "dist/hes-gallery.min.js",
   "types": "types.d.ts",
