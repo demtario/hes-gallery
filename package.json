@@ -1,8 +1,9 @@
 {
   "name": "hes-gallery",
-  "version": "1.4.12",
+  "version": "1.4.13",
   "description": "Light, dependency free script creating a responsive gallery",
   "main": "dist/hes-gallery.min.js",
+  "types": "types.d.ts",
   "scripts": {
     "build": "gulp build",
     "dev": "gulp watch"
