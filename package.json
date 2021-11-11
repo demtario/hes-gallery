@@ -6,7 +6,8 @@
   "types": "types.d.ts",
   "scripts": {
     "build": "gulp build",
-    "dev": "gulp watch"
+    "dev": "gulp watch",
+    "prepublish": "yarn build"
   },
   "engines": {
     "node": "11.x"
