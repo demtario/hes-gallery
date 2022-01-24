@@ -140,6 +140,8 @@ To enable this feature, set `linkNested` to true in the options during initialis
 
 Feel free to contribute any changes/features for future versions of HesGallery. Please work, and create Pull Pequests on `develop` branch.
 
+To run build scripts you probably need node in version `11`.
+
 ### How to run?
 
 1. Install dependecies with `npm i` command
