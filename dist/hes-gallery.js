@@ -4,7 +4,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 /*!
 
-	HesGallery v1.4.12
+	HesGallery v1.5.1
 
 	Copyright (c) 2018-2019 Artur Medrygal <medrygal.artur@gmail.com>
 
@@ -13,7 +13,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 */
 
 var HesGallery = {
-  version: '1.4.12',
+  version: '1.5.1',
   options: {
     // Global
     disableScrolling: false,
